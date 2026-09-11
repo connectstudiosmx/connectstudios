@@ -273,11 +273,29 @@ em { font-style: italic; }
    conserva su calidez y el velo se encarga del contraste. */
 .hero-media img,
 .hero-media video {
+  position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover; object-position: 62% center;
   opacity: .66;
   filter: saturate(.78) contrast(1.04);
 }
+/* el video entra encima de la foto con un fundido, no de golpe */
+.hero-media video { opacity: 0; transition: opacity 1.3s var(--ease-out); }
+.hero-media video.is-on { opacity: .66; }
+/* en pantalla vertical la foto y el video son el corte 9:16, que ya
+   viene encuadrado toma por toma: se centra (misma regla que el <picture>) */
+@media (max-aspect-ratio: 4/5) {
+  .hero-media img, .hero-media video { object-position: center; }
+}
+
+/* iPhone: si bloquea el autoplay (modo de bajo consumo), nunca debe
+   asomar su boton de play encima de un fondo */
+.hero-media video::-webkit-media-controls-start-playback-button,
+.proceso-clip video::-webkit-media-controls-start-playback-button {
+  display: none !important; -webkit-appearance: none;
+}
+.hero-media video::-webkit-media-controls,
+.proceso-clip video::-webkit-media-controls { display: none !important; }
 
 /* capa 2: el velo, asimetrico.
    Oscuro a la izquierda y abajo, donde vive el texto; abierto arriba a la
@@ -1397,6 +1415,24 @@ em { font-style: italic; }
    interpolaba durante 1.1 s y el movimiento se veia congelado. */
 .js-on .reveal[data-parallax] { transform: none; }
 .js-on .reveal[data-parallax].is-in { transition: opacity 1.1s var(--ease-out); }
+
+/* Las cajas con hover (o .is-activo en tactil) tambien son .reveal. La
+   transicion del reveal es mas especifica y les borraba la del hover:
+   crecian y se encendian de golpe. Aqui van las dos juntas. */
+.js-on .criterio-item.reveal.is-in,
+.js-on .cita.reveal.is-in {
+  transition: opacity 1.1s var(--ease-out), transform 1.1s var(--ease-out),
+              scale .55s var(--ease-out), translate .55s var(--ease-out),
+              box-shadow .55s var(--ease-out);
+}
+.js-on .paso.reveal.is-in {
+  transition: opacity 1.1s var(--ease-out), transform 1.1s var(--ease-out),
+              translate .5s var(--ease-out);
+}
+.js-on .logos li.reveal.is-in {
+  transition: opacity 1.1s var(--ease-out), transform 1.1s var(--ease-out),
+              scale .5s var(--ease-out), box-shadow .5s var(--ease-out);
+}
 .js-on .hero-titulo .line-i { transform: translateY(102%); }
 
 /* =============================================================
@@ -1467,6 +1503,87 @@ em { font-style: italic; }
   .nav-mobile { display: none !important; }
   .nav-logo img { width: 150px; }
   .logos { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* =============================================================
+   Tactil: lo que en computadora hace el mouse, aqui lo hace el scroll.
+   main.js (initActivoTactil) marca .is-activo al elemento que cruza el
+   centro de la pantalla, y se enciende con los mismos valores que el
+   hover de cada seccion. Si cambias un hover, cambia tambien este.
+   ============================================================= */
+@media (hover: none) {
+  .criterio-item, .framework-lista li, .cita {
+    transition: scale .55s var(--ease-out), translate .55s var(--ease-out),
+                box-shadow .55s var(--ease-out);
+  }
+
+  .criterio-item.is-activo {
+    scale: 1.022; translate: 0 -5px;
+    box-shadow:
+      inset 0 0 0 1px rgba(57, 255, 136, .38),
+      0 0 26px -4px rgba(57, 255, 136, .16),
+      0 24px 48px -26px rgba(0, 0, 0, .9);
+  }
+  .criterio-item.is-activo::before { width: 100%; }
+
+  .framework-lista li.is-activo {
+    scale: 1.025; translate: 0 -4px;
+    box-shadow:
+      inset 0 0 0 1px rgba(57, 255, 136, .34),
+      0 0 22px -4px rgba(57, 255, 136, .14),
+      0 20px 40px -24px rgba(0, 0, 0, .9);
+  }
+  .framework-lista li.is-activo::before { width: 100%; }
+
+  .cita.is-activo {
+    scale: 1.014; translate: 0 -4px;
+    box-shadow:
+      inset 0 0 0 1px rgba(57, 255, 136, .34),
+      0 0 24px -4px rgba(57, 255, 136, .14),
+      0 22px 46px -26px rgba(0, 0, 0, .9);
+  }
+  .cita.is-activo::before { width: 100%; }
+
+  /* servicios puntuales: la barra tenue se enciende completa */
+  .puntuales-lista a::before { transition: transform .5s var(--ease-out), opacity .5s var(--ease-out); }
+  .puntuales-lista a.is-activo {
+    padding-left: 1.15rem;
+    background: linear-gradient(90deg, rgba(57,255,136,.05), transparent 55%);
+  }
+  .puntuales-lista a.is-activo::before { opacity: 1; }
+  .puntuales-lista a.is-activo .p-icono { stroke: var(--accent); transform: scale(1.08); }
+  .puntuales-lista a.is-activo .p-nombre { color: var(--accent); }
+  .puntuales-lista a.is-activo .p-desc { color: var(--cream-dim); }
+  .puntuales-lista a.is-activo .p-flecha { opacity: 1; transform: translateX(0); }
+
+  /* los pasos: se enciende el numero y su tramo de hilo */
+  .paso { transition: translate .5s var(--ease-out); }
+  .paso::before { transition: background-color .5s var(--ease-out); }
+  .paso-txt p { transition: color .45s var(--ease-out); }
+  .paso-num::after { transition: box-shadow .5s var(--ease-out); }
+  .paso.is-activo { translate: 7px 0; }
+  .paso.is-activo::before { background: var(--accent); }
+  .paso.is-activo .paso-num {
+    background: var(--accent);
+    color: var(--bg);
+    box-shadow:
+      inset 0 0 0 1px var(--accent),
+      0 0 0 4px rgba(57, 255, 136, .16),
+      0 0 15px 2px rgba(57, 255, 136, .48),
+      0 0 38px 7px rgba(57, 255, 136, .20);
+  }
+  .paso.is-activo .paso-num::after {
+    box-shadow: 0 0 0 5px rgba(57, 255, 136, .13),
+                0 0 0 11px rgba(57, 255, 136, .05);
+  }
+  .paso.is-activo .paso-txt p { color: var(--cream); }
+
+  /* los logos: pasa una ola por la rejilla conforme bajas */
+  .logos li.is-activo {
+    scale: 1.035;
+    box-shadow: 0 0 0 1px rgba(57, 255, 136, .45),
+                0 18px 38px -22px rgba(0, 0, 0, .95);
+  }
 }
 
 /* =============================================================

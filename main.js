@@ -1,6 +1,7 @@
 (function () {
   "use strict";
 
+  window.__CS_OK = true;             /* avisa al vigia del <head>: el JS si llego */
   var data = window.__BRAND__ || {};
 
   /* ---------- helpers ---------- */
@@ -70,36 +71,57 @@
   /* =============================================================
      El loop del fondo del hero (manifest.reel.loop). Es un clip corto
      y mudo, no el reel completo: ese va por YouTube en El trabajo.
-     En moviles nunca se monta: poster fijo (bateria y datos).
+     Corre en todas las pantallas (decision de Manuel: primero que se
+     vea, los datos del visitante no son prioridad). En pantalla
+     vertical va el corte 9:16.
      ============================================================= */
   function mountReel() {
     var slot = $("[data-reel]");
     var reel = data.reel;
     if (!slot || !reel || !reel.loop) return;
-    if (!fineHover || window.innerWidth < 960) return;
+    if (reduced) return;                                /* queda la foto */
     if (slot.querySelector("video")) return;
 
+    /* la misma regla que el <picture> y el preload del HTML */
+    var vertical = !!reel.loopVertical && matchMedia("(max-aspect-ratio: 4/5)").matches;
+
     var v = document.createElement("video");
-    v.src = reel.loop;
-    if (reel.poster) v.poster = reel.poster;
-    v.muted = true; v.loop = true; v.autoplay = true;
+    v.src = vertical ? reel.loopVertical : reel.loop;
+    v.className = vertical ? "is-vertical" : "";
+    v.muted = true; v.setAttribute("muted", "");       /* iOS lo pide como atributo */
+    v.loop = true; v.autoplay = true;
     v.playsInline = true; v.setAttribute("playsinline", "");
-    v.preload = "metadata";
+    v.preload = "auto";
+    v.disablePictureInPicture = true;
     v.setAttribute("aria-hidden", "true");
-    v.addEventListener("loadeddata", function () {
-      var img = slot.querySelector("img");
-      if (img) img.remove();
+
+    /* La foto se queda debajo hasta que el video de verdad corre, y
+       entonces el video funde encima. Si el navegador no lo deja
+       arrancar (iPhone en modo de bajo consumo), el video se quita:
+       nadie ve un cuadro congelado ni un boton de play encima. */
+    v.addEventListener("playing", function () {
+      if (v.classList.contains("is-on")) return;
+      v.classList.add("is-on");
+      setTimeout(function () {
+        var foto = slot.querySelector("picture") || slot.querySelector("img");
+        if (foto) foto.remove();
+      }, 1400);
     });
+    function arrancar() {
+      var p = v.play();
+      if (p && p.catch) p.catch(function (e) {
+        if (e && e.name === "NotAllowedError" && !v.classList.contains("is-on")) v.remove();
+      });
+    }
     slot.appendChild(v);
-    var p = v.play();
-    if (p && p.catch) p.catch(function () { /* si el navegador lo bloquea, queda el poster */ });
+    arrancar();
 
     /* fuera de pantalla no se decodifica: nadie lo esta viendo */
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
-          if (en.isIntersecting) { var q = v.play(); if (q && q.catch) q.catch(function () {}); }
-          else v.pause();
+          if (!v.isConnected) return;
+          en.isIntersecting ? arrancar() : v.pause();
         });
       }, { threshold: 0 }).observe(slot);
     }
@@ -124,9 +146,12 @@
     var ACCENT = [57, 255, 136];
     var CREAM  = [242, 239, 233];
 
+    /* En celular se usa una densidad mayor por pixel: con la de
+       escritorio quedaban ~18 puntos y el efecto casi no se notaba. */
     function count() {
-      var base = Math.round((w * h) / 17000);
-      var cap = (fineHover && w >= 960) ? 90 : 34;
+      var chico = w < 720;
+      var base = Math.round((w * h) / (chico ? 7000 : 17000));
+      var cap = (fineHover && w >= 960) ? 90 : 60;
       return Math.max(14, Math.min(base, cap));
     }
 
@@ -134,10 +159,10 @@
       parts = [];
       var n = count();
       /* en pantallas chicas los puntos grandes se leen como manchas,
-         no como polvo: se achican y se atenuan */
+         no como polvo: se achican un poco, sin apagarlos */
       var chico = w < 720;
-      var rMax = chico ? 1.05 : 1.7;
-      var aMax = chico ? 0.24 : 0.34;
+      var rMax = chico ? 1.3 : 1.7;
+      var aMax = chico ? 0.3 : 0.34;
       for (var i = 0; i < n; i++) {
         var z = Math.random();                     /* profundidad 0..1 */
         parts.push({
@@ -220,6 +245,21 @@
         mouse.on = true;
       });
       hero.addEventListener("pointerleave", function () { mouse.on = false; });
+    } else {
+      /* en tactil el dedo hace de cursor: al tocar o deslizar sobre el
+         hero, las particulas se apartan. Pasivo: nunca frena el scroll. */
+      var dedo = function (e) {
+        var t = e.touches && e.touches[0];
+        if (!t) return;
+        var rect = hero.getBoundingClientRect();
+        mouse.x = t.clientX - rect.left;
+        mouse.y = t.clientY - rect.top;
+        mouse.on = true;
+      };
+      hero.addEventListener("touchstart", dedo, { passive: true });
+      hero.addEventListener("touchmove", dedo, { passive: true });
+      hero.addEventListener("touchend", function () { mouse.on = false; }, { passive: true });
+      hero.addEventListener("touchcancel", function () { mouse.on = false; }, { passive: true });
     }
 
     /* pausa cuando el hero sale de pantalla */
@@ -238,8 +278,7 @@
   /* =============================================================
      Reveals al hacer scroll.
      Umbral 0.05 + temporizador de rescate: si el observer no
-     dispara (navegador raro, seccion mas alta que la ventana),
-     el contenido aparece igual a los 2 s.
+     funciona (navegador raro), el contenido aparece igual a los 3.2 s.
      ============================================================= */
   function initReveals() {
     var items = $$(".reveal");
@@ -255,11 +294,20 @@
       });
     });
 
-    function show(el) { el.classList.add("is-in"); }
+    function show(el) {
+      el.classList.add("is-in");
+      /* El escalonado solo sirve para entrar. Despues estorba: el retraso
+         aplica a todas las transiciones, y el hover respondia hasta medio
+         segundo tarde. Se quita cuando la entrada ya termino. */
+      var d = parseFloat(el.style.transitionDelay) || 0;
+      if (d) setTimeout(function () { el.style.transitionDelay = ""; }, d + 1150);
+    }
 
     if (!("IntersectionObserver" in window)) { items.forEach(show); return; }
 
+    var vivo = false;
     var io = new IntersectionObserver(function (entries) {
+      vivo = true;
       entries.forEach(function (en) {
         if (en.isIntersecting) { show(en.target); io.unobserve(en.target); }
       });
@@ -267,9 +315,13 @@
 
     items.forEach(function (el) { io.observe(el); });
 
-    /* rescate: si el observer nunca dispara, el contenido aparece igual.
-       Se cuenta el escalonado mas largo para no cortarlo a media entrada. */
-    setTimeout(function () { items.forEach(show); }, 3200);
+    /* Rescate: solo si el observer no funciona. Un observer sano reporta
+       el estado de cada elemento en cuanto se le pide observarlo, asi que
+       si a los 3.2 s no ha dicho nada, esta roto y todo aparece igual.
+       (Antes el rescate era incondicional: a los 3.2 s revelaba la pagina
+       entera fuera de pantalla, y quien leia el hero con calma nunca
+       veia entrar ninguna seccion.) */
+    setTimeout(function () { if (!vivo) items.forEach(show); }, 3200);
   }
 
   /* =============================================================
@@ -416,15 +468,23 @@
   /* =============================================================
      Parallax del collage. Maximo 40 px de recorrido: lo suficiente
      para que se sienta vivo, no tanto como para marear ni para
-     costar frames. Se apaga en tactil y con reduced-motion.
+     costar frames. Se apaga solo con reduced-motion.
      ============================================================= */
   function initParallax() {
-    if (reduced || !fineHover) return;
+    if (reduced) return;
     if (!window.gsap || !window.ScrollTrigger) return;
+
+    /* En celular la barra del navegador aparece y desaparece al hacer
+       scroll, y cambia el alto de la pantalla. Sin esto, cada cambio
+       recalcula todas las posiciones y las fotos brincan. */
+    ScrollTrigger.config({ ignoreMobileResize: true });
+    /* en tactil un poco mas corto: la pantalla es chica y el dedo
+       mueve la pagina mas rapido que la rueda del mouse */
+    var escala = fineHover ? 1 : 0.7;
 
     $$("[data-parallax]").forEach(function (el) {
       var f = parseFloat(el.getAttribute("data-parallax")) || 0.1;
-      var d = Math.min(40, Math.round(f * 260));
+      var d = Math.round(Math.min(40, f * 260) * escala);
       gsap.fromTo(el, { y: d }, {
         y: -d,
         ease: "none",
@@ -471,15 +531,15 @@
   }
 
   /* =============================================================
-     El clip de proceso. Sin audio, en bucle, y solo corre mientras
-     esta en pantalla. En movil no se descarga siquiera: se queda el
-     poster (preload="none" en el HTML) para no gastar datos ni bateria.
+     Los clips de proceso. Sin audio, en bucle, y solo corren mientras
+     estan en pantalla. Corren tambien en celular. No se descargan
+     hasta que el visitante se acerca (preload="none" en el HTML): el
+     margen hace que ya esten corriendo cuando entran a cuadro.
      ============================================================= */
   function initClip() {
     var clips = $$("[data-clip]");
     if (!clips.length) return;
     if (reduced) return;                                 /* queda el poster */
-    if (!fineHover || window.innerWidth < 960) return;   /* movil: poster */
     if (!("IntersectionObserver" in window)) return;
 
     var io = new IntersectionObserver(function (entries) {
@@ -488,14 +548,34 @@
         if (en.isIntersecting) {
           v.preload = "auto";
           var p = v.play();
-          if (p && p.catch) p.catch(function () { /* si lo bloquean, queda el poster */ });
+          if (p && p.catch) p.catch(function () { /* bajo consumo: queda el poster */ });
         } else {
           v.pause();
         }
       });
-    }, { threshold: 0.2 });
+    }, { threshold: 0, rootMargin: "30% 0px" });
 
     clips.forEach(function (v) { io.observe(v); });
+  }
+
+  /* =============================================================
+     Tactil: sin mouse no hay hover, asi que el scroll hace sus veces.
+     El elemento que cruza la franja central de la pantalla se enciende
+     (.is-activo) igual que con el cursor encima, y se apaga al salir.
+     La franja es angosta para que no se enciendan varios a la vez.
+     ============================================================= */
+  function initActivoTactil() {
+    if (fineHover || !("IntersectionObserver" in window)) return;
+    var els = $$(".criterio-item, .framework-lista li, .puntuales-lista a, .paso, .logos li, .cita");
+    if (!els.length) return;
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        en.target.classList.toggle("is-activo", en.isIntersecting);
+      });
+    }, { threshold: 0, rootMargin: "-48% 0px -48% 0px" });   /* franja de ~4% al centro */
+
+    els.forEach(function (el) { io.observe(el); });
   }
 
   /* =============================================================
@@ -565,6 +645,7 @@
     safe(initVerReel, "initVerReel");
     safe(initPendientes, "initPendientes");
     safe(initClip, "initClip");
+    safe(initActivoTactil, "initActivoTactil");
     safe(initForm, "initForm");
     safe(initParticles, "initParticles");
     safe(initReveals, "initReveals");

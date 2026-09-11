@@ -33,13 +33,22 @@
      Athelas y Vanguard son de pago y no se pueden servir en web sin licencia. -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,100,400..600;1,100..125,800..900&family=Source+Serif+4:opsz,wght@8..60,300..600&display=swap">
 
-<link rel="preload" as="image" href="assets/img/reel-poster.webp" fetchpriority="high">
-<link rel="stylesheet" href="styles.css?v=20260910e">
+<!-- la misma regla que el <picture> del hero: cada pantalla precarga solo su foto -->
+<link rel="preload" as="image" href="assets/img/reel-poster-vertical.webp" media="(max-aspect-ratio: 4/5)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/img/reel-poster.webp" media="not all and (max-aspect-ratio: 4/5)" fetchpriority="high">
+<link rel="stylesheet" href="styles.css?v=20260911">
 
 <!-- Marca que hay JS antes del primer pintado: evita que el contenido
      aparezca y luego salte al animarse. Sin JS, .js-on nunca existe y
      todo se ve estatico y completo. -->
-<script>document.documentElement.className += " js-on";</script>
+<script>
+document.documentElement.className += " js-on";
+/* Vigia: si main.js no llega (red caida, archivo bloqueado), a los 6 s se
+   quita js-on y todo se ve estatico y completo. Nunca una pagina en blanco. */
+setTimeout(function () {
+  if (!window.__CS_OK) document.documentElement.classList.remove("js-on");
+}, 6000);
+</script>
 
 <script type="application/ld+json">
 {
@@ -119,12 +128,16 @@
      ============================================================ -->
 <section class="hero" id="hero">
 
-  <!-- Capa 1-2: el loop del reel. La imagen es un fotograma del propio
-       reel: se ve en celular y mientras carga el video. En escritorio,
-       main.js monta encima el loop de 9 s (manifest.reel.loop). -->
+  <!-- Capa 1-2: el loop del reel. La foto es un fotograma del propio
+       reel y se ve mientras carga el video; main.js monta encima el loop
+       de 9 s (horizontal o vertical, segun la pantalla) y funde. -->
   <div class="hero-media" data-reel>
-    <img src="assets/img/reel-poster.webp" alt="" aria-hidden="true"
-         fetchpriority="high" decoding="async" width="1600" height="900">
+    <picture>
+      <source media="(max-aspect-ratio: 4/5)" srcset="assets/img/reel-poster-vertical.webp"
+              width="608" height="1080">
+      <img src="assets/img/reel-poster.webp" alt="" aria-hidden="true"
+           fetchpriority="high" decoding="async" width="1600" height="900">
+    </picture>
   </div>
   <div class="hero-veil" aria-hidden="true"></div>
 
@@ -852,6 +865,6 @@
 <script defer src="lib/gsap.min.js"></script>
 <script defer src="lib/ScrollTrigger.min.js"></script>
 <script defer src="lib/manifest.js"></script>
-<script defer src="main.js?v=20260910c"></script>
+<script defer src="main.js?v=20260911"></script>
 </body>
 </html>
