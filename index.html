@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connect Studios — Video corporativo con dirección creativa | Guadalajara</title>
+<meta name="description" content="Producimos video corporativo para empresas de Guadalajara que ya tienen reputación y necesitan que su imagen esté a la altura. Retainer mensual de contenido y proyectos por encargo.">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:site_name" content="Connect Studios">
+<meta property="og:title" content="Connect Studios — Video corporativo con dirección creativa">
+<meta property="og:description" content="Video corporativo para negocios cuya reputación va muy por delante de su imagen.">
+<!-- La ruta absoluta es obligatoria: WhatsApp, LinkedIn y compañía no
+     resuelven rutas relativas. Empieza a funcionar cuando el dominio
+     este en linea; si el dominio final cambia, actualizar estas tres. -->
+<meta property="og:url" content="https://connectstudios.mx/">
+<meta property="og:image" content="https://connectstudios.mx/assets/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Connect Studios — producción audiovisual">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="canonical" href="https://connectstudios.mx/">
+<!-- YouTube exige saber desde que sitio se inserta su reproductor; sin
+     esto responde con el error 153. Es el valor por defecto de los
+     navegadores, pero se deja explicito por si el hosting lo cambia. -->
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Sustitutas libres de la marca: Archivo ≈ Vanguard, Source Serif 4 ≈ Athelas.
+     Athelas y Vanguard son de pago y no se pueden servir en web sin licencia. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,100,400..600;1,100..125,800..900&family=Source+Serif+4:opsz,wght@8..60,300..600&display=swap">
+
+<link rel="preload" as="image" href="assets/img/reel-poster.webp" fetchpriority="high">
+<link rel="stylesheet" href="styles.css?v=20260910e">
+
+<!-- Marca que hay JS antes del primer pintado: evita que el contenido
+     aparezca y luego salte al animarse. Sin JS, .js-on nunca existe y
+     todo se ve estatico y completo. -->
+<script>document.documentElement.className += " js-on";</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "Connect Studios",
+      "url": "https://connectstudios.mx/",
+      "logo": "https://connectstudios.mx/assets/img/logo-connect.webp",
+      "email": "manuelperez@connectstudios.mx",
+      "description": "Producción de video corporativo con dirección creativa.",
+      "areaServed": { "@type": "City", "name": "Guadalajara, Jalisco, México" },
+      "founder": { "@type": "Person", "name": "Manuel Alejandro Pérez Becerra" },
+      "sameAs": [
+        "https://www.youtube.com/@connect.studiosmx",
+        "https://www.instagram.com/connect.stu/"
+      ]
+    },
+    {
+      "@type": "Person",
+      "name": "Manuel Alejandro Pérez Becerra",
+      "jobTitle": "Productor audiovisual y director creativo",
+      "email": "manuelperez@connectstudios.mx",
+      "worksFor": { "@type": "Organization", "name": "Connect Studios" }
+    }
+  ]
+}
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#hero-titulo">Saltar al contenido</a>
+
+<!-- Cortinilla de entrada. Sin JS nunca se muestra (CSS la deja oculta
+     hasta que main.js agrega .js-splash), asi que no puede tapar el sitio. -->
+<div id="splash" aria-hidden="true"><span class="splash-mark"></span></div>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#hero" aria-label="Connect Studios — inicio">
+      <img src="assets/img/logo-connect.webp" alt="Connect Studios" width="640" height="180">
+    </a>
+
+    <nav class="nav-links" aria-label="Secciones">
+      <a href="#problema">Criterio</a>
+      <a href="#trabajo">El trabajo</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Proceso</a>
+    </nav>
+
+    <a class="btn btn-sm btn-ghost nav-cta" href="#contacto">Hablemos</a>
+
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-mobile">
+      <span class="sr-only">Abrir menú</span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+  </div>
+
+  <div class="nav-mobile" id="nav-mobile" hidden>
+    <a href="#problema">Criterio</a>
+    <a href="#trabajo">El trabajo</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#proceso">Proceso</a>
+    <a class="nav-mobile-cta" href="#contacto">Hablemos</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero" id="hero">
+
+  <!-- Capa 1-2: el loop del reel. La imagen es un fotograma del propio
+       reel: se ve en celular y mientras carga el video. En escritorio,
+       main.js monta encima el loop de 9 s (manifest.reel.loop). -->
+  <div class="hero-media" data-reel>
+    <img src="assets/img/reel-poster.webp" alt="" aria-hidden="true"
+         fetchpriority="high" decoding="async" width="1600" height="900">
+  </div>
+  <div class="hero-veil" aria-hidden="true"></div>
+
+  <!-- Capa 3: particulas -->
+  <canvas class="hero-particles" id="particles" aria-hidden="true"></canvas>
+
+  <!-- Capa 5: contenido -->
+  <div class="hero-body">
+    <p class="eyebrow reveal">Productora audiovisual · Guadalajara</p>
+
+    <h1 class="hero-titulo" id="hero-titulo">
+      <span class="line"><span class="line-i">La reputación</span></span>
+      <span class="line"><span class="line-i">ya la hiciste tú.</span></span>
+      <span class="line"><span class="line-i">Que se vea bien</span></span>
+      <span class="line"><span class="line-i"><em>me toca a mí.</em></span></span>
+    </h1>
+
+    <!-- Barra inferior tipo cinta: la bajada a un lado, las dos acciones al
+         otro. Una linea fina la separa del titular. -->
+    <div class="hero-pie reveal">
+      <p class="hero-sub">
+        Video corporativo para negocios cuya reputación va muy por delante de su imagen.
+      </p>
+
+      <div class="hero-acciones">
+        <a class="btn" href="#contacto">Hablemos</a>
+        <a class="hero-reel" href="#trabajo" data-ver-reel>
+          <span class="hero-reel-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>
+          </span>
+          <span class="hero-reel-txt">
+            <span class="hero-reel-titulo">Ver demo reel</span>
+            <span class="hero-reel-meta">2026 · 2:25</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CRITERIO — el manifiesto.
+     Reencuadre pedido por Manuel: no compara ni critica a otros
+     productores. El punto de vista se sostiene solo, hablando de
+     lo que el contenido tiene que lograr.
+     ============================================================ -->
+<section class="seccion criterio" id="problema">
+  <p class="eyebrow reveal">Criterio</p>
+
+  <h2 class="criterio-titulo reveal">
+    Aquí nada se graba porque sí.
+  </h2>
+
+  <div class="criterio-lead" data-stagger="130">
+    <p class="reveal">La pregunta no es cómo se ve. Es qué tiene que lograr.</p>
+    <p class="reveal">
+      Cada pieza sale con un objetivo definido antes de encender la cámara.
+      Ese objetivo decide el guion, el tono y hasta dónde se graba. No al revés.
+    </p>
+  </div>
+
+  <!-- Tres BTS: el cliente a los lados, Manuel en medio. Flotan a
+       distinta velocidad, muy poco, para que no se lean como una fila. -->
+  <div class="criterio-fotos" data-stagger="180">
+    <figure class="criterio-foto reveal" data-parallax="0.07">
+      <img src="assets/img/bts/bts-3.webp" alt="Rodaje en las instalaciones de un cliente"
+           loading="lazy" decoding="async" width="1400" height="2100">
+    </figure>
+    <figure class="criterio-foto criterio-foto-centro reveal" data-parallax="0.03">
+      <img src="assets/img/bts/bts-2.webp" alt="Manuel Pérez ajustando el teleprompter durante un rodaje"
+           loading="lazy" decoding="async" width="1400" height="2100">
+    </figure>
+    <figure class="criterio-foto reveal" data-parallax="0.09">
+      <img src="assets/img/bts/bts-4.webp" alt="Set montado durante una grabación con cliente"
+           loading="lazy" decoding="async" width="1400" height="2100">
+    </figure>
+  </div>
+
+  <ol class="criterio-lista" data-stagger="600">
+    <li class="criterio-item reveal">
+      <span class="criterio-num" aria-hidden="true">01</span>
+      <h3>Que convierta</h3>
+      <p>
+        Confianza, percepción o una acción concreta: depende del objetivo de
+        la campaña. Lo que no cambia es que el objetivo se define antes de
+        grabar, porque en edición ya no se corrige.
+      </p>
+    </li>
+
+    <li class="criterio-item reveal">
+      <span class="criterio-num" aria-hidden="true">02</span>
+      <h3>Percepción</h3>
+      <p>
+        Cómo te ve un cliente antes de sentarse contigo. Esa impresión se
+        construye a propósito o se deja al azar, pero ocurre de todas formas.
+      </p>
+    </li>
+
+    <li class="criterio-item reveal">
+      <span class="criterio-num" aria-hidden="true">03</span>
+      <h3>Siempre en contacto</h3>
+      <p>
+        Transparencia durante todo el proceso. El resultado sale bien porque
+        se corrige a tiempo, no porque se adivinó. No entregamos y
+        desaparecemos.
+      </p>
+    </li>
+  </ol>
+</section>
+
+<!-- ============================================================
+     EL TRABAJO — el reel (donde si se puede ver) + un solo caso.
+     Nada de parrilla: con un portafolio corto, una parrilla invita
+     a contar piezas. Un caso a fondo cambia la pregunta de
+     "cuanto ha hecho" a "como piensa".
+     ============================================================ -->
+<section class="seccion trabajo" id="trabajo">
+  <p class="eyebrow reveal">El trabajo</p>
+
+  <!-- ---------- A. El reel ---------- -->
+  <!-- El reel completo, en YouTube. Es una fachada: portada + boton.
+       El reproductor (~1 MB) solo se descarga al dar clic. Sin JS, el
+       enlace abre el video directo en YouTube. -->
+  <div class="reel reveal" data-reel-player>
+    <div class="reel-marco">
+      <a class="reel-fachada" href="https://www.youtube.com/watch?v=7-ilQ97QtZQ"
+         aria-label="Reproducir el demo reel">
+        <img class="reel-poster reel-poster-real" src="assets/img/reel-portada.webp" alt=""
+             loading="lazy" decoding="async" width="1600" height="900">
+        <span class="reel-play" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>
+        </span>
+      </a>
+    </div>
+    <p class="reel-pie">
+      Demo reel 2026. Corporativo, producto y cultura, en una sola pieza.
+    </p>
+  </div>
+
+  <!-- ---------- B. El caso ---------- -->
+  <article class="caso">
+    <header class="caso-head reveal">
+      <p class="caso-kicker">Caso · Video institucional</p>
+      <h2 class="caso-titulo">CABB Arrenda</h2>
+      <p class="caso-meta">Arrendadora · Guadalajara · 2024</p>
+    </header>
+
+    <div class="caso-grid">
+
+      <div class="caso-bloque reveal">
+        <span class="caso-num" aria-hidden="true">01</span>
+        <h3>El reto</h3>
+        <p>
+          Un video de aniversario tiende a quedarse en felicitación interna.
+          Un institucional tiene que vender confianza hacia afuera. Esta pieza
+          tenía que hacer las dos cosas sin quedarse a medias en ninguna.
+        </p>
+      </div>
+
+      <figure class="still still-a reveal" data-parallax="0.10">
+        <img src="assets/img/cabb/cabb-1-puerta.webp" alt="Entrada del corporativo de CABB"
+             loading="lazy" decoding="async" data-pendiente="Still 1 · la entrada">
+      </figure>
+
+      <div class="caso-bloque reveal">
+        <span class="caso-num" aria-hidden="true">02</span>
+        <h3>La decisión creativa</h3>
+        <p>
+          La llamada fue corta: van a hacer un video de aniversario y quieren
+          una propuesta. Lo que propuse fue no hacer un aniversario.
+        </p>
+        <p>
+          Si ya íbamos a armar una pieza, valía más usarla para contar la
+          historia de la empresa, su proceso y, sobre todo, cómo se siente ser
+          su cliente: cómo lo atienden y cómo lo cuidan. El aniversario dejó de
+          ser el tema y pasó a ser el motivo.
+        </p>
+      </div>
+
+      <figure class="still still-b reveal" data-parallax="0.16">
+        <img src="assets/img/cabb/cabb-2-junta.webp" alt="Junta interna de CABB Arrenda"
+             loading="lazy" decoding="async" data-pendiente="Still 2 · la trayectoria">
+      </figure>
+
+      <figure class="still still-c reveal" data-parallax="0.06">
+        <img src="assets/img/cabb/cabb-3-atencion.webp" alt="Atención a un cliente en las oficinas"
+             loading="lazy" decoding="async" data-pendiente="Still 3 · la atención">
+      </figure>
+
+      <div class="caso-bloque reveal">
+        <span class="caso-num" aria-hidden="true">03</span>
+        <h3>Cómo se resolvió</h3>
+        <p>
+          Se grabó donde de verdad pasa: en sus oficinas. La recepción, el
+          trato, la firma del contrato, la explicación. Y el cierre en la
+          distribuidora de autos, cuando el cliente recibe las llaves y se va con su
+          camioneta.
+        </p>
+        <p>
+          Encima, un guion hablado con la trayectoria de la empresa. La imagen
+          muestra el proceso completo; la voz cuenta la historia.
+        </p>
+      </div>
+
+      <figure class="still still-d reveal" data-parallax="0.14">
+        <img src="assets/img/cabb/cabb-4-entrega.webp" alt="Entrega del vehículo en la distribuidora"
+             loading="lazy" decoding="async" data-pendiente="Still 4 · la entrega">
+      </figure>
+
+      <figure class="still still-e reveal" data-parallax="0.04">
+        <img src="assets/img/cabb/cabb-5-llaves.webp" alt="El vehículo listo para entregarse al cliente"
+             loading="lazy" decoding="async" data-pendiente="Still 5 · el cierre">
+      </figure>
+
+    </div>
+
+    <div class="caso-cta reveal">
+      <a class="btn" href="#contacto">Hablemos</a>
+      <span class="caso-cta-nota">El video completo no se publica. Se muestra en llamada.</span>
+    </div>
+  </article>
+</section>
+
+<!-- ============================================================
+     SERVICIOS — dos niveles, jerarquia deliberadamente desigual.
+     El retainer domina; los proyectos puntuales son una lista
+     secundaria y sin precios. NO es una parrilla de tarjetas
+     iguales: eso pondria a competir la iguala con una pieza suelta.
+     ============================================================ -->
+<section class="seccion servicios" id="servicios">
+  <p class="eyebrow reveal">Servicios</p>
+
+  <!-- ---------- Nivel 1: el retainer ---------- -->
+  <div class="retainer reveal">
+    <div class="retainer-head">
+      <div>
+        <p class="retainer-kicker">La oferta principal</p>
+        <h2 class="retainer-titulo">Retainer mensual de contenido</h2>
+      </div>
+      <p class="retainer-precio">
+        <span class="retainer-desde">desde</span>
+        <span class="retainer-cifra">$14,499 MXN</span>
+        <span class="retainer-periodo">al mes · más IVA</span>
+      </p>
+    </div>
+
+    <p class="retainer-lead">
+      12 videos al mes, publicados lunes, miércoles y viernes. No es sólo
+      producción: incluye decidir qué se graba, por qué, y qué tiene que
+      lograr cada pieza.
+    </p>
+
+    <div class="framework">
+      <p class="framework-titulo">Cada mes se estructura en tres funciones</p>
+      <ul class="framework-lista">
+        <li>
+          <h3>Alcance</h3>
+          <p>
+            Contenido simple y fácil de ver. Su trabajo es abrir la puerta:
+            que más gente llegue a la marca, empezando por el cliente ideal.
+          </p>
+        </li>
+        <li>
+          <h3>Nutrir</h3>
+          <p>
+            Para la audiencia que ya se interesó. Le entrega algo de valor, y
+            con eso se queda y sigue a la marca.
+          </p>
+        </li>
+        <li>
+          <h3>Historia</h3>
+          <p>
+            Genera cercanía. Deja de ser una empresa que informa en redes y
+            pasa a ser alguien con quien la gente conecta.
+          </p>
+        </li>
+      </ul>
+      <p class="framework-nota">
+        El formato vertical de este servicio es el mismo que producimos para Dorma.
+      </p>
+    </div>
+
+    <ul class="garantias">
+      <li>Si no se entregan los 12 videos del mes, el cobro se ajusta proporcionalmente.</li>
+      <li>El primer mes se puede terminar sin penalización.</li>
+    </ul>
+
+    <div class="retainer-cta">
+      <a class="btn" href="#contacto">Hablemos</a>
+      <span class="retainer-cta-nota">El precio final depende de locaciones, equipo y alcance.</span>
+    </div>
+  </div>
+
+  <!-- ---------- Nivel 2: proyectos puntuales ---------- -->
+  <div class="puntuales">
+    <!-- Fondo a sangre completa. Se recorre con el scroll y lleva su
+         propio velo para que el texto no pierda contraste. Es el mismo
+         recurso del hero: cuando llegue el reel, se cambia en los dos
+         lugares. aria-hidden porque es decoracion pura. -->
+    <div class="puntuales-fondo" aria-hidden="true">
+      <img src="assets/img/hero-placeholder.webp" alt="" decoding="async"
+           loading="lazy" data-parallax="0.16">
+    </div>
+
+    <div class="puntuales-head reveal">
+      <p class="puntuales-kicker">También por proyecto</p>
+      <h3 class="puntuales-titulo">No todo se cuenta en un mes.</h3>
+      <p class="puntuales-lead">
+        Hay encargos que piden una sola pieza, hecha en serio. Cada uno se
+        cotiza aparte, según locación, equipo y alcance.
+      </p>
+    </div>
+
+    <ul class="puntuales-lista" data-stagger="90">
+      <li class="reveal">
+        <a href="#contacto">
+          <svg class="p-icono" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 21h18M5 21V4a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v17M14 9h4a1 1 0 0 1 1 1v11M8 7h3M8 11h3M8 15h3"/>
+          </svg>
+          <span class="p-nombre">Video institucional</span>
+          <span class="p-desc">Quién es la empresa: cultura, planta, procesos, gente y trayectoria en una sola pieza.</span>
+          <span class="p-flecha" aria-hidden="true">→</span>
+        </a>
+      </li>
+      <li class="reveal">
+        <a href="#contacto">
+          <svg class="p-icono" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M2.5 4.5h19v11h-19zM8 20.5h8M12 15.5v5"/><circle cx="12" cy="9" r="2.3"/>
+          </svg>
+          <span class="p-nombre">Video corporativo</span>
+          <span class="p-desc">Comunicación interna, externa o híbrida. Informativo, dirigido a un público definido.</span>
+          <span class="p-flecha" aria-hidden="true">→</span>
+        </a>
+      </li>
+      <li class="reveal">
+        <a href="#contacto">
+          <svg class="p-icono" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 12.5V4.2a1 1 0 0 1 1-1h8.3l8.5 8.5-9.3 9.3z"/><circle cx="7.6" cy="7.6" r="1.4"/>
+          </svg>
+          <span class="p-nombre">Video comercial</span>
+          <span class="p-desc">Para mostrar un producto con una intención de venta clara.</span>
+          <span class="p-flecha" aria-hidden="true">→</span>
+        </a>
+      </li>
+      <li class="reveal">
+        <a href="#contacto">
+          <svg class="p-icono" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 10.5v3a1 1 0 0 0 1 1h2l8 5V4.5l-8 5H4a1 1 0 0 0-1 1zM18.5 8.5a5 5 0 0 1 0 7"/>
+          </svg>
+          <span class="p-nombre">Video promocional</span>
+          <span class="p-desc">Productos, ofertas o eventos. Informativo, sin intención de venta directa.</span>
+          <span class="p-flecha" aria-hidden="true">→</span>
+        </a>
+      </li>
+      <li class="reveal">
+        <a href="#contacto">
+          <svg class="p-icono" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="9" y="2.5" width="6" height="11" rx="3"/><path d="M5 11.5a7 7 0 0 0 14 0M12 18.5v3M8.5 21.5h7"/>
+          </svg>
+          <span class="p-nombre">Podcast multicámara</span>
+          <span class="p-desc">Guion, grabación a dos cámaras y edición, más las piezas cortas derivadas.</span>
+          <span class="p-flecha" aria-hidden="true">→</span>
+        </a>
+      </li>
+      <li class="reveal">
+        <a href="#contacto">
+          <svg class="p-icono" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/><path d="m15.6 8.4-2.1 5.1-5.1 2.1 2.1-5.1z"/>
+          </svg>
+          <span class="p-nombre">Dirección creativa fraccional</span>
+          <span class="p-desc">No se entrega video: se entrega criterio, guion y línea visual para el equipo que ya tienes.</span>
+          <span class="p-flecha" aria-hidden="true">→</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================
+     CÓMO TRABAJO — los cuatro pasos reales de Manuel.
+     El paso 3 recoge "Siempre en contacto" de la seccion Criterio:
+     lo que alla se promete, aqui se ve como metodo.
+     ============================================================ -->
+<section class="seccion proceso" id="proceso">
+  <p class="eyebrow reveal">Cómo trabajo</p>
+
+  <h2 class="proceso-titulo reveal">
+    <span>Entrego lo que me pidieron.</span>
+    <span>Y una cosa más.</span>
+  </h2>
+
+  <div class="proceso-grid">
+
+    <ol class="pasos" data-stagger="180">
+      <li class="paso reveal">
+        <span class="paso-num" aria-hidden="true">01</span>
+        <div class="paso-txt">
+          <h3>Diagnóstico</h3>
+          <p>
+            Primero entiendo qué necesita el cliente: qué quiere lograr, a
+            quién quiere llegar y para qué va a usar el contenido. No me quedo
+            en «necesito un video» — busco el objetivo que hay detrás.
+          </p>
+        </div>
+      </li>
+
+      <li class="paso reveal">
+        <span class="paso-num" aria-hidden="true">02</span>
+        <div class="paso-txt">
+          <h3>Propongo una solución</h3>
+          <p>
+            Con lo que detecto, propongo lo que creo que va a funcionar mejor.
+            No sólo la producción: también cómo se puede usar el contenido en
+            comunicación, marketing, publicidad o redes.
+          </p>
+        </div>
+      </li>
+
+      <li class="paso reveal">
+        <span class="paso-num" aria-hidden="true">03</span>
+        <div class="paso-txt">
+          <h3>Produzco y acompaño</h3>
+          <p>
+            Planeación, grabación, fotografía, multicámara: lo que pida el
+            proyecto. Durante todo el proceso mantengo comunicación con el
+            cliente, para ir ajustando y detectar dónde se puede hacer algo
+            mejor.
+          </p>
+        </div>
+      </li>
+
+      <li class="paso reveal">
+        <span class="paso-num" aria-hidden="true">04</span>
+        <div class="paso-txt">
+          <h3>Edito, entrego y aporto algo más</h3>
+          <p>
+            Postproducción y entrega del material listo para usarse. Y siempre
+            que puedo, aporto algo que no me pidieron: una recomendación, una
+            adaptación, una idea de contenido. Algo que de verdad le sirva.
+          </p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="proceso-media" data-stagger="200">
+      <figure class="proceso-clip reveal" data-parallax="0.05">
+        <video src="assets/video/bts-vertical.mp4"
+               poster="assets/img/bts/proceso-poster.webp"
+               muted loop playsinline preload="none"
+               aria-label="Rodaje en curso" data-clip></video>
+      </figure>
+      <figure class="proceso-foto reveal" data-parallax="0.10">
+        <img src="assets/img/bts/proceso-dirigiendo.webp" alt="Manuel Pérez dirigiendo junto al cliente"
+             loading="lazy" decoding="async" width="1400" height="2100">
+      </figure>
+
+      <figure class="proceso-clip proceso-clip-2 reveal" data-parallax="0.07">
+        <video src="assets/video/myskin-bts.mp4"
+               poster="assets/img/bts/myskin-poster.webp"
+               muted loop playsinline preload="none"
+               aria-label="Rodaje de producto en set" data-clip></video>
+      </figure>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     CLIENTES Y COLABORACIONES — un solo grupo, sin separar.
+     Decision de Manuel. El encabezado cubre los dos casos sin
+     atribuirle a Connect Studios nada de ninguna empresa en
+     particular, que era el riesgo real de mezclarlos.
+     ============================================================ -->
+<section class="seccion clientes" id="clientes">
+  <div class="clientes-head">
+    <p class="eyebrow reveal">Clientes y colaboraciones</p>
+    <h2 class="clientes-titulo reveal">
+      <span class="ct-a">No es una lista de logos.</span>
+      <span class="ct-b">Es una lista de decisiones.</span>
+    </h2>
+    <p class="clientes-lead reveal">
+      Proyectos en los que Connect Studios participó, como productora
+      responsable o como parte del equipo de realización.
+    </p>
+  </div>
+
+  <ul class="logos" data-stagger="70">
+    <li class="reveal"><img src="assets/img/clientes/tequila-carrera.webp" alt="Tequila Carrera" loading="lazy" decoding="async" width="445" height="313"></li>
+    <li class="reveal"><img src="assets/img/clientes/cabb-arrenda.webp" alt="CABB Arrenda" loading="lazy" decoding="async" width="446" height="313"></li>
+    <li class="reveal"><img src="assets/img/clientes/eture-lab.webp" alt="Eture Lab" loading="lazy" decoding="async" width="445" height="313"></li>
+    <li class="reveal"><img src="assets/img/clientes/activate-my-skin.webp" alt="Activate My Skin" loading="lazy" decoding="async" width="432" height="313"></li>
+    <li class="reveal"><img src="assets/img/clientes/tendencias.webp" alt="Tendencias Alta Costura" loading="lazy" decoding="async" width="445" height="314"></li>
+    <li class="reveal"><img src="assets/img/clientes/dorma.webp" alt="Dorma" loading="lazy" decoding="async" width="446" height="314"></li>
+    <li class="reveal"><img src="assets/img/clientes/cya.webp" alt="C&amp;A" loading="lazy" decoding="async" width="445" height="314"></li>
+    <li class="reveal"><img src="assets/img/clientes/seguros-monterrey.webp" alt="New York Life Seguros Monterrey" loading="lazy" decoding="async" width="432" height="314"></li>
+    <li class="reveal"><img src="assets/img/clientes/galeria-ajolote.webp" alt="Galería Ajolote" loading="lazy" decoding="async" width="445" height="301"></li>
+    <li class="reveal"><img src="assets/img/clientes/finvivir.webp" alt="Finvivir" loading="lazy" decoding="async" width="446" height="301"></li>
+    <li class="reveal"><img src="assets/img/clientes/jugo-comunicacion.webp" alt="Jugo Comunicación" loading="lazy" decoding="async" width="445" height="301"></li>
+    <li class="reveal"><img src="assets/img/clientes/confexion-design.webp" alt="Confexion Design" loading="lazy" decoding="async" width="432" height="301"></li>
+  </ul>
+</section>
+
+<!-- ============================================================
+     SOBRE MANUEL
+     El texto de arriba sale de hechos ya confirmados. La historia
+     personal — la parte que de verdad convence — sigue pendiente.
+     ============================================================ -->
+<section class="seccion sobre" id="sobre">
+  <div class="sobre-grid">
+    <figure class="sobre-foto reveal" data-parallax="0.06">
+      <img src="assets/img/manuel.webp" alt="Manuel Alejandro Pérez Becerra"
+           loading="lazy" decoding="async" width="1200" height="1800">
+    </figure>
+
+    <div class="sobre-texto" data-stagger="150">
+      <p class="eyebrow reveal">Sobre mí</p>
+      <h2 class="sobre-titulo reveal">Manuel Pérez</h2>
+      <p class="sobre-rol reveal">Productor audiovisual y director creativo</p>
+
+      <p class="reveal">
+        Trabajo con PyMEs mexicanas: empresas que ya funcionan y que necesitan
+        que su contenido trabaje para ellas.
+      </p>
+
+      <p class="reveal">
+        Llevo varios años dirigiendo contenido, desde campañas publicitarias
+        hasta documentales corporativos. Mi trabajo es convertir una idea en
+        una pieza que la gente entienda y que mueva algo: ventas, confianza,
+        o la relación con un cliente.
+      </p>
+
+      <p class="reveal">
+        Lo que busco es ser el puente entre tu empresa y tus clientes. Que lo
+        que se ve por fuera refleje lo que la empresa ya es por dentro.
+      </p>
+
+      <p class="reveal sobre-cta">
+        <a class="link-quiet" href="#contacto">Hablemos</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TESTIMONIOS
+     Texto literal de los videos, recortado solo con puntos
+     suspensivos. Ni una palabra agregada.
+     ============================================================ -->
+<section class="seccion testimonios" id="testimonios">
+  <div class="testimonios-head">
+    <p class="eyebrow reveal">Testimonios</p>
+    <h2 class="testimonios-titulo reveal">Lo dicen ellos, no yo.</h2>
+  </div>
+
+  <ul class="citas" data-stagger="220">
+
+    <li class="cita reveal">
+      <blockquote>
+        <!-- Excepcion aprobada por Manuel a la regla de palabras prohibidas:
+             "videografos" aparece aqui en boca de un cliente, y justamente
+             para decir que Manuel no lo es. -->
+        <p>
+          «Había trabajado con muchos videógrafos anteriormente en mis
+          empresas… llegaban, grababan y hacían lo que tú les pedías. Pero acá
+          con Manuel me pasó diferente: se involucró completamente en el
+          desarrollo del guion, en la manera de grabar los videos, en los
+          efectos…»
+        </p>
+        <p>
+          «De esperar algo muy simple, él me empezó a ayudar a iterar para
+          hacer la marca personal un poco más exitosa. La primera oportunidad
+          que tenga volvería a trabajar con él sin ningún problema.»
+        </p>
+      </blockquote>
+      <figcaption class="cita-quien">
+        <img src="assets/img/testimonios/edgar.webp" alt="Edgar Temores"
+             loading="lazy" decoding="async" data-pendiente="Foto de Edgar">
+        <span class="cita-datos">
+          <span class="cita-nombre">Edgar Temores</span>
+          <span class="cita-cargo">Dueño · Dorma</span>
+        </span>
+      </figcaption>
+    </li>
+
+    <li class="cita reveal">
+      <blockquote>
+        <p>
+          «El trabajar contigo ha sido una forma muy profesional, y sobre todo
+          que no te quedaste con nada más el grabar: me ayudaste a desarrollar
+          ideas de cómo formar parte y crecer más mi negocio, y eso la verdad
+          me encantó.»
+        </p>
+        <p>
+          «Yo soy una persona a la que le ha costado mucho trabajo el grabar,
+          el memorizar, entonces buscaste las alternativas en las cuales me
+          sentí muy cómoda.»
+        </p>
+      </blockquote>
+      <figcaption class="cita-quien">
+        <img src="assets/img/testimonios/griselda.webp" alt="Griselda"
+             loading="lazy" decoding="async" data-pendiente="Foto de Griselda">
+        <span class="cita-datos">
+          <span class="cita-nombre">Griselda</span>
+          <span class="cita-cargo">Asesora de ventas · Seguros Monterrey</span>
+        </span>
+      </figcaption>
+    </li>
+
+  </ul>
+</section>
+
+<!-- ============================================================
+     CONTACTO
+     El formulario postea a Formspree. Con JS, el envio es en segundo
+     plano y el aviso sale en la propia pagina. Sin JS, el POST sigue
+     funcionando (redirige a Formspree): se pierde el acabado, nunca
+     el mensaje.
+     ============================================================ -->
+<section class="seccion contacto" id="contacto">
+  <div class="contacto-grid">
+
+    <div class="contacto-intro">
+      <p class="eyebrow reveal">Contacto</p>
+      <h2 class="contacto-titulo reveal">Aquí empieza el diagnóstico.</h2>
+      <p class="contacto-lead reveal">
+        Con eso ya se puede proponer algo. Si todavía no está claro, esa
+        también es una buena conversación.
+      </p>
+
+      <p class="contacto-fallback reveal">
+        ¿Prefieres correo?<br>
+        <a class="link-quiet contacto-correo"
+           href="mailto:manuelperez@connectstudios.mx?subject=Contacto%20desde%20connectstudios.mx">manuelperez@connectstudios.mx</a>
+      </p>
+    </div>
+
+    <form class="form reveal" action="https://formspree.io/f/meaqqpkr" method="POST" data-form>
+      <input type="hidden" name="_subject" value="Nuevo mensaje desde connectstudios.mx">
+      <!-- trampa antispam: invisible para personas, irresistible para bots -->
+      <p class="gotcha" aria-hidden="true">
+        <label>No llenar<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+      </p>
+
+      <div class="campo">
+        <label for="f-nombre">Nombre</label>
+        <input id="f-nombre" name="nombre" type="text" required autocomplete="name">
+      </div>
+
+      <div class="campo">
+        <label for="f-correo">Correo</label>
+        <input id="f-correo" name="correo" type="email" required autocomplete="email">
+      </div>
+
+      <div class="campo">
+        <label for="f-empresa">Empresa</label>
+        <input id="f-empresa" name="empresa" type="text" required autocomplete="organization">
+      </div>
+
+      <div class="campo">
+        <label for="f-mensaje">¿Qué tiene que lograr?</label>
+        <textarea id="f-mensaje" name="mensaje" rows="4" required></textarea>
+      </div>
+
+      <button class="btn form-enviar" type="submit">Hablemos</button>
+
+      <p class="form-aviso" data-aviso role="status" aria-live="polite" hidden></p>
+    </form>
+
+  </div>
+
+  <!-- El corte de marca: aqui el lema deja de ser adorno.
+       Logo y lema son un solo boton que regresa al inicio. -->
+  <a class="marca-corte reveal" href="#hero" aria-label="Volver al inicio">
+    <img src="assets/img/logo-connect.webp" alt="Connect Studios"
+         width="640" height="180" loading="lazy">
+    <span class="marca-lema">Siempre en contacto.</span>
+  </a>
+</section>
+
+</main>
+
+<!-- El logo y el lema ya cierran la seccion de Contacto: aqui el pie
+     se queda callado, solo con lo funcional. -->
+<footer class="footer">
+  <div class="footer-inner">
+    <nav class="footer-nav" aria-label="Secciones">
+      <a href="#problema">Criterio</a>
+      <a href="#trabajo">El trabajo</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#clientes">Clientes</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <ul class="footer-redes">
+      <li>
+        <a href="https://www.youtube.com/@connect.studiosmx" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="1.6" y="5.2" width="20.8" height="13.6" rx="4.2"/>
+            <path class="lleno" d="m10 8.9 5.6 3.1-5.6 3.1z"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.instagram.com/connect.stu/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.4"/>
+            <circle cx="12" cy="12" r="4.3"/>
+            <circle class="lleno" cx="17.5" cy="6.6" r="1.15"/>
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="footer-pie">
+    <p class="footer-legal">© <span data-anio>2026</span> Connect Studios · Guadalajara, México</p>
+    <a class="footer-arriba" href="#hero">Volver arriba ↑</a>
+  </div>
+</footer>
+
+<!-- grano: encima de todo, no intercepta clics -->
+<div class="grain" aria-hidden="true"></div>
+
+<script defer src="lib/gsap.min.js"></script>
+<script defer src="lib/ScrollTrigger.min.js"></script>
+<script defer src="lib/manifest.js"></script>
+<script defer src="main.js?v=20260910c"></script>
+</body>
+</html>
