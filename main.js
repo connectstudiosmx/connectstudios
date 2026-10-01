@@ -599,9 +599,36 @@
       aviso.hidden = false;
     }
 
+    /* Copia al portal: guarda el mensaje en Solicitudes y avisa al chat
+       corporativo de Telegram. Si falla, el correo de Formspree llega igual.
+       La llave es la publica (Publishable), hecha para ir en la pagina. */
+    var PORTAL = {
+      url: "https://ypguioklwhyixacfuksu.supabase.co/rest/v1/rpc/contacto_web",
+      llave: "sb_publishable_qjTIY_M5HJ9R653m_uOmXw_bBbVTibS"
+    };
+    function aPortal() {
+      try {
+        if (form.elements._gotcha && form.elements._gotcha.value) return;   /* bot */
+        var v = function (n) { return form.elements[n] ? String(form.elements[n].value).trim() : ""; };
+        var origen = { pagina: location.pathname };
+        var p = new URLSearchParams(location.search);
+        ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "fbclid", "gclid"].forEach(function (k) {
+          if (p.get(k)) origen[k] = p.get(k).slice(0, 200);
+        });
+        if (document.referrer && document.referrer.indexOf(location.origin) !== 0) origen.referrer = document.referrer.slice(0, 200);
+        fetch(PORTAL.url, {
+          method: "POST", keepalive: true,
+          headers: { "Content-Type": "application/json", apikey: PORTAL.llave },
+          body: JSON.stringify({ p_nombre: v("nombre"), p_correo: v("correo"), p_empresa: v("empresa"),
+                                 p_mensaje: v("mensaje"), p_origen: origen })
+        }).catch(function () {});
+      } catch (err) { /* el correo es el respaldo */ }
+    }
+
     form.addEventListener("submit", function (e) {
       /* el navegador ya valido required/email antes de llegar aqui */
       e.preventDefault();
+      aPortal();
 
       if (boton) { boton.disabled = true; boton.textContent = "Enviando…"; }
       if (aviso) aviso.hidden = true;
