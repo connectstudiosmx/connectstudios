@@ -36,7 +36,7 @@
 <!-- la misma regla que el <picture> del hero: cada pantalla precarga solo su foto -->
 <link rel="preload" as="image" href="assets/img/reel-poster-vertical.webp" media="(max-aspect-ratio: 4/5)" fetchpriority="high">
 <link rel="preload" as="image" href="assets/img/reel-poster.webp" media="not all and (max-aspect-ratio: 4/5)" fetchpriority="high">
-<link rel="stylesheet" href="styles.css?v=20260911">
+<link rel="stylesheet" href="styles.css?v=20261001">
 
 <!-- Marca que hay JS antes del primer pintado: evita que el contenido
      aparezca y luego salte al animarse. Sin JS, .js-on nunca existe y
@@ -802,6 +802,7 @@ setTimeout(function () {
       </div>
 
       <button class="btn form-enviar" type="submit">Hablemos</button>
+      <p class="form-legal">Al enviar aceptas el <a href="https://portal.connectstudios.mx/privacidad.html">aviso de privacidad</a>.</p>
 
       <p class="form-aviso" data-aviso role="status" aria-live="polite" hidden></p>
     </form>
@@ -855,6 +856,11 @@ setTimeout(function () {
 
   <div class="footer-pie">
     <p class="footer-legal">© <span data-anio>2026</span> Connect Studios · Guadalajara, México</p>
+    <nav class="footer-legales" aria-label="Información legal">
+      <a href="/preguntas/">Preguntas frecuentes</a>
+      <a href="/terminos/">Términos del servicio</a>
+      <a href="https://portal.connectstudios.mx/privacidad.html">Aviso de privacidad</a>
+    </nav>
     <a class="footer-arriba" href="#hero">Volver arriba ↑</a>
   </div>
 </footer>
