@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,100,400..600;1,100..125,800..900&family=Source+Serif+4:opsz,wght@8..60,300..600&display=swap">
 <link rel="stylesheet" href="/styles.css?v=20261001c">
-<link rel="stylesheet" href="/paginas.css?v=20261001d">
+<link rel="stylesheet" href="/paginas.css?v=20261001f">
 </head>
 <body>
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -50,29 +50,126 @@
   </div>
 </header>
 
-<main id="contenido" class="doc">
-<header class="doc-head">
-  <p class="eyebrow">Connect Studios · Guadalajara</p>
-  <h1 class="doc-titulo">Trabaja con <em>nosotros</em></h1>
-  <p class="doc-lead">Buscamos editores de video, camarógrafos y fotógrafos para producir contenido de empresas y eventos en Guadalajara. Mándanos tu portafolio: lo revisamos y, si tu trabajo encaja, te escribimos.</p>
-</header>
+<main id="contenido" class="tcn">
 
-<div class="srv-grid tcn-roles">
-  <article class="srv-tarjeta"><span class="n">01</span><h3>Edición</h3><p>Video vertical para redes y piezas corporativas: buen ritmo, subtítulos limpios y audio cuidado. Puedes editar desde cualquier ciudad o país.</p></article>
-  <article class="srv-tarjeta"><span class="n">02</span><h3>Cámara</h3><p>Grabación de contenido, entrevistas y eventos de empresa en la Zona Metropolitana de Guadalajara.</p></article>
-  <article class="srv-tarjeta"><span class="n">03</span><h3>Foto</h3><p>Cobertura de eventos sociales y de empresa: bodas, XV años, congresos y lanzamientos.</p></article>
-</div>
+<!-- Portada: el texto y, junto, el video de detrás de cámaras en un visor -->
+<section class="tcn-hero">
+  <div class="tcn-hero-texto">
+    <p class="eyebrow reveal">Connect Studios · Guadalajara</p>
+    <h1 class="doc-titulo reveal">Trabaja con <em>nosotros</em></h1>
+    <p class="doc-lead reveal">Buscamos editores de video, camarógrafos y fotógrafos para producir contenido de empresas y eventos. Mándanos tu portafolio: lo revisamos y, si tu trabajo encaja, te escribimos.</p>
+    <div class="srv-acciones reveal">
+      <a class="btn" href="#postular">Mandar mi portafolio</a>
+      <a class="link-quiet" href="#como">Cómo trabajamos ↓</a>
+    </div>
+    <ul class="tcn-chips reveal" aria-label="Lo que buscamos">
+      <li><b>Edición</b> · desde cualquier país</li>
+      <li><b>Cámara</b> · Guadalajara</li>
+      <li><b>Foto</b> · Guadalajara</li>
+    </ul>
+  </div>
+  <figure class="tcn-visor reveal">
+    <video src="/assets/video/bts-vertical.mp4" poster="/assets/img/bts/proceso-poster.webp"
+           muted loop playsinline preload="none" aria-label="Detrás de cámaras de un rodaje corporativo" data-clip data-tc></video>
+    <span class="tcn-rec" aria-hidden="true">REC</span>
+    <span class="tcn-tc" aria-hidden="true" data-tc-txt>00:00:00:00</span>
+    <figcaption>Detrás de cámaras · rodaje corporativo</figcaption>
+  </figure>
+</section>
 
-<ol class="srv-pasos tcn-pasos">
-  <li><h3>Mandas tu portafolio</h3><p>Toma dos minutos. Lo mejor de tu trabajo en un link.</p></li>
-  <li><h3>Lo revisamos</h3><p>Vemos cada portafolio con calma, no por orden de llegada.</p></li>
-  <li><h3>Te escribimos</h3><p>Si encaja con lo que buscamos, te escribimos por WhatsApp. Si no es ahora, lo tenemos en cuenta para proyectos que vengan.</p></li>
-</ol>
+<!-- A quién buscamos: una tarjeta con foto por oficio -->
+<section class="tcn-sec" id="roles" aria-labelledby="roles-titulo">
+  <p class="eyebrow reveal">A quién buscamos</p>
+  <h2 id="roles-titulo" class="reveal">Tres oficios, el mismo cuidado</h2>
+  <div class="tcn-roles">
+    <article class="tcn-rol reveal">
+      <div class="tcn-rol-media"><video src="/assets/video/dorma-celulas-loop.mp4" poster="/assets/img/dorma-celulas-poster.webp"
+           muted loop playsinline preload="none" aria-label="Video vertical editado para Dorma, con subtítulos" data-clip></video></div>
+      <div class="tcn-rol-cuerpo">
+        <span class="n">01 · Edición</span>
+        <h3>Editores de video</h3>
+        <p>Video vertical para redes y piezas corporativas: buen ritmo, subtítulos limpios y audio cuidado.</p>
+        <span class="tcn-tag">Desde cualquier ciudad o país</span>
+      </div>
+    </article>
+    <article class="tcn-rol reveal">
+      <div class="tcn-rol-media"><img class="pos-camara" src="/assets/img/bts/bts-2.webp" alt="Camarógrafo ajustando la cámara y el teleprompter en un rodaje" loading="lazy" decoding="async" width="1400" height="2100"></div>
+      <div class="tcn-rol-cuerpo">
+        <span class="n">02 · Cámara</span>
+        <h3>Camarógrafos</h3>
+        <p>Contenido para redes, entrevistas y eventos de empresa, con buena luz y buen audio.</p>
+        <span class="tcn-tag">Zona Metropolitana de Guadalajara</span>
+      </div>
+    </article>
+    <article class="tcn-rol reveal">
+      <div class="tcn-rol-media"><img class="pos-foto" src="/assets/img/bts/myskin-poster.webp" alt="Fotógrafo encuadrando una sesión de producto" loading="lazy" decoding="async" width="1024" height="576"></div>
+      <div class="tcn-rol-cuerpo">
+        <span class="n">03 · Foto</span>
+        <h3>Fotógrafos</h3>
+        <p>Cobertura de eventos sociales y de empresa: bodas, XV años, congresos y lanzamientos.</p>
+        <span class="tcn-tag">Guadalajara</span>
+      </div>
+    </article>
+  </div>
+</section>
 
-<section class="tcn-form" id="postular" aria-labelledby="tcn-titulo">
-  <h2 id="tcn-titulo">Manda tu portafolio</h2>
-  <p class="tcn-intro">Todos los campos son obligatorios, salvo los que dicen “opcional”.</p>
+<!-- Cómo trabajamos: collage del set y lo que gana quien colabora -->
+<section class="tcn-sec tcn-asi" id="como" aria-labelledby="como-titulo">
+  <div class="tcn-collage reveal">
+    <img src="/assets/img/bts/bts-3.webp" alt="Set de grabación con cámara y teleprompter, el equipo preparando la toma" loading="lazy" decoding="async" width="1400" height="2100">
+    <img src="/assets/img/bts/proceso-dirigiendo.webp" alt="Manuel Pérez revisando la toma en el monitor" loading="lazy" decoding="async" width="1400" height="2100">
+  </div>
+  <div>
+    <p class="eyebrow reveal">Cómo trabajamos</p>
+    <h2 id="como-titulo" class="reveal">Todo en orden. Nada perdido en el chat.</h2>
+    <ul class="srv-checks tcn-puntos reveal">
+      <li><strong>Proyectos para empresas.</strong> Contenido mensual para redes, video corporativo y eventos.</li>
+      <li><strong>Un portal para el equipo.</strong> Ahí ves tus videos, la carpeta del material y la fecha límite, y marcas cuando terminas.</li>
+      <li><strong>Un estilo claro.</strong> Formato vertical, audio cuidado y sin efectos, stickers ni audios de moda.</li>
+      <li><strong>Revisión antes de entregar.</strong> Cada video se revisa antes de llegar al cliente, con comentarios concretos.</li>
+    </ul>
+  </div>
+</section>
 
+<!-- Clientes: mismo criterio que la portada del sitio -->
+<section class="tcn-sec" aria-labelledby="clientes-titulo">
+  <p class="eyebrow reveal">Clientes y colaboraciones</p>
+  <h2 id="clientes-titulo" class="reveal">Marcas con las que hemos trabajado</h2>
+  <p class="tcn-intro reveal">Como productora responsable o como parte del equipo de realización.</p>
+  <ul class="logos tcn-logos reveal">
+    <li><img src="/assets/img/clientes/tequila-carrera.webp" alt="Tequila Carrera" loading="lazy" decoding="async" width="445" height="313"></li>
+    <li><img src="/assets/img/clientes/cabb-arrenda.webp" alt="CABB Arrenda" loading="lazy" decoding="async" width="446" height="313"></li>
+    <li><img src="/assets/img/clientes/eture-lab.webp" alt="Eture Lab" loading="lazy" decoding="async" width="445" height="313"></li>
+    <li><img src="/assets/img/clientes/activate-my-skin.webp" alt="Activate My Skin" loading="lazy" decoding="async" width="432" height="313"></li>
+    <li><img src="/assets/img/clientes/tendencias.webp" alt="Tendencias Alta Costura" loading="lazy" decoding="async" width="445" height="314"></li>
+    <li><img src="/assets/img/clientes/dorma.webp" alt="Dorma" loading="lazy" decoding="async" width="446" height="314"></li>
+    <li><img src="/assets/img/clientes/cya.webp" alt="C&amp;A" loading="lazy" decoding="async" width="445" height="314"></li>
+    <li><img src="/assets/img/clientes/seguros-monterrey.webp" alt="New York Life Seguros Monterrey" loading="lazy" decoding="async" width="432" height="314"></li>
+    <li><img src="/assets/img/clientes/galeria-ajolote.webp" alt="Galería Ajolote" loading="lazy" decoding="async" width="445" height="301"></li>
+    <li><img src="/assets/img/clientes/finvivir.webp" alt="Finvivir" loading="lazy" decoding="async" width="446" height="301"></li>
+    <li><img src="/assets/img/clientes/jugo-comunicacion.webp" alt="Jugo Comunicación" loading="lazy" decoding="async" width="445" height="301"></li>
+    <li><img src="/assets/img/clientes/confexion-design.webp" alt="Confexion Design" loading="lazy" decoding="async" width="432" height="301"></li>
+  </ul>
+</section>
+
+<!-- El formulario, con los pasos a un lado -->
+<section class="tcn-sec tcn-postular" id="postular" aria-labelledby="tcn-titulo">
+  <div class="tcn-postular-intro">
+    <p class="eyebrow">Postúlate</p>
+    <h2 id="tcn-titulo">Manda tu portafolio</h2>
+    <p>Toma dos minutos. Solo los campos que dicen “opcional” se pueden dejar en blanco.</p>
+    <ol class="tcn-pasos">
+      <li><strong>Mandas tu portafolio.</strong> Lo mejor de tu trabajo en un link.</li>
+      <li><strong>Lo revisamos.</strong> Con calma, no por orden de llegada.</li>
+      <li><strong>Te escribimos.</strong> Si encaja, por WhatsApp. Si no es ahora, lo tenemos en cuenta para lo que venga.</li>
+    </ol>
+    <div class="tcn-firma">
+      <img src="/assets/img/manuel.webp" alt="" loading="lazy" decoding="async" width="1200" height="1800">
+      <p><strong>Manuel Pérez</strong><br>Productor audiovisual y director creativo. Reviso cada portafolio.</p>
+    </div>
+  </div>
+
+  <div class="tcn-form">
   <form class="form" data-postular novalidate>
     <!-- trampa antispam: invisible para personas, irresistible para bots -->
     <p class="gotcha" aria-hidden="true">
@@ -133,8 +230,8 @@
         <p class="ayuda" id="t-wa-ayuda" hidden></p>
       </div>
       <div class="campo">
-        <label for="t-correo">Correo</label>
-        <input id="t-correo" name="correo" type="email" required maxlength="200" autocomplete="email" placeholder="tu@correo.com">
+        <label for="t-correo">Correo <span class="opc">(opcional)</span></label>
+        <input id="t-correo" name="correo" type="email" maxlength="200" autocomplete="email" placeholder="tu@correo.com">
       </div>
     </div>
 
@@ -182,6 +279,7 @@
     <h2>Gracias, <span data-pila></span>.</h2>
     <p>Ya tenemos tu portafolio. Lo revisamos y, si tu trabajo encaja con lo que buscamos, te escribimos por WhatsApp.</p>
     <p><a href="/">Conoce nuestro trabajo</a></p>
+  </div>
   </div>
 </section>
 </main>
@@ -311,7 +409,7 @@ document.querySelectorAll("[data-anio]").forEach(function (e) { e.textContent = 
       [v("ciudad").length < 2, "ciudad", "Escribe en qué ciudad vives."],
       [!whatsapp(), "whatsapp", v("pais") === "México" ? "Revisa tu WhatsApp: tiene que tener 10 dígitos."
         : LADAS[v("pais")] ? "Revisa tu WhatsApp: escribe tu número completo." : "Escribe tu WhatsApp con la lada de tu país, por ejemplo +51 987 654 321."],
-      [!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v("correo")), "correo", "Revisa tu correo."],
+      [!!v("correo") && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v("correo")), "correo", "Revisa tu correo o déjalo en blanco."],
       [!link(v("portafolio")), "portafolio", "Pega el link a tu portafolio, por ejemplo https://vimeo.com/tuusuario"],
       [!v("experiencia"), "experiencia", "Dinos cuánto tiempo llevas."]
     ];
@@ -369,6 +467,40 @@ document.querySelectorAll("[data-anio]").forEach(function (e) { e.textContent = 
           : "No se pudo enviar. Revisa tu conexión e inténtalo de nuevo. Si sigue fallando, escríbenos a manuelperez@connectstudios.mx.", "mal");
       });
   });
+})();
+
+/* Videos: se reproducen solo mientras se ven. Con "reducir movimiento"
+   se quedan en su póster y nada aparece animado. */
+(function () {
+  var reducido = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reducido || !("IntersectionObserver" in window)) return;
+
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      var v = e.target;
+      if (e.isIntersecting) { v.preload = "auto"; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+      else v.pause();
+    });
+  }, { threshold: 0.25 });
+  document.querySelectorAll("[data-clip]").forEach(function (v) { io.observe(v); });
+
+  /* Código de tiempo del visor (24 cuadros por segundo) */
+  var v = document.querySelector("[data-tc]"), t = document.querySelector("[data-tc-txt]");
+  if (v && t) {
+    var dos = function (n) { return (n < 10 ? "0" : "") + n; };
+    var pinta = function () {
+      var s = v.currentTime;
+      t.textContent = "00:" + dos(Math.floor(s / 60)) + ":" + dos(Math.floor(s % 60)) + ":" + dos(Math.floor((s % 1) * 24));
+      if (!v.paused) requestAnimationFrame(pinta);
+    };
+    v.addEventListener("play", function () { requestAnimationFrame(pinta); });
+  }
+
+  document.documentElement.classList.add("js-on");
+  var ro = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("is-in"); ro.unobserve(e.target); } });
+  }, { rootMargin: "0px 0px -6% 0px" });
+  document.querySelectorAll(".reveal").forEach(function (el) { ro.observe(el); });
 })();
 </script>
 </body>

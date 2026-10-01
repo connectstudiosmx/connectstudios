@@ -186,26 +186,154 @@ a.srv-tarjeta h3::after { content: " →"; color: var(--accent); }
 .srv-media.activo::after, .srv-media.activo figcaption { display: none; }
 
 /* =============================================================
-   Trabaja con nosotros: tarjetas, pasos y formulario
+   Trabaja con nosotros
+   Portada con visor de cámara, tarjetas con foto por oficio,
+   collage del set, logos y el formulario con sus pasos a un lado.
    ============================================================= */
-.tcn-roles { margin-bottom: clamp(2.5rem, 6vh, 3.5rem); grid-template-columns: repeat(auto-fit, minmax(min(100%, 185px), 1fr)); }
-.doc .tcn-pasos { margin: 0 0 clamp(2.75rem, 7vh, 4rem); padding: 0; grid-template-columns: repeat(auto-fit, minmax(min(100%, 185px), 1fr)); }
-.tcn-pasos li { padding-left: 0; margin: 0; }
-.doc .tcn-pasos p { margin: 0; }
+.tcn {
+  max-width: var(--maxw); margin: 0 auto;
+  padding: calc(var(--nav-h) + clamp(1.5rem, 5vh, 3.5rem)) var(--gutter) clamp(3.5rem, 9vh, 6rem);
+}
+.tcn p, .tcn li { color: var(--cream-dim); }
+.tcn strong { color: var(--cream); font-weight: 500; }
+.tcn a:not(.btn):not(.link-quiet) { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.tcn .link-quiet { color: var(--cream-dim); }
+
+/* --- portada --- */
+.tcn-hero {
+  display: grid; gap: clamp(2.25rem, 5vw, 4rem); align-items: center;
+  padding-bottom: clamp(2.5rem, 7vh, 4.5rem);
+}
+@media (min-width: 900px) { .tcn-hero { grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr); } }
+.tcn-hero .doc-titulo { font-size: clamp(2.9rem, 7.4vw, 6.2rem); margin-bottom: 1.4rem; }
+.tcn-hero .doc-lead { max-width: 34rem; margin: 0 0 1.9rem; }
+.tcn-chips { list-style: none; padding: 0; margin: 2rem 0 0; display: flex; flex-wrap: wrap; gap: .5rem; }
+.tcn .tcn-chips li {
+  font-size: .8rem; padding: .45rem .9rem; border-radius: 100px;
+  box-shadow: inset 0 0 0 1px var(--line); color: var(--cream-dim);
+}
+.tcn-chips b { color: var(--accent); font-weight: 500; }
+
+/* visor: el video de detrás de cámaras con encuadre, REC y código de tiempo */
+.tcn-visor {
+  position: relative; margin: 0; justify-self: center;
+  width: min(100%, 360px); aspect-ratio: 9 / 16;
+  border-radius: 20px; overflow: hidden; background: var(--bg-2);
+  box-shadow: 0 0 0 1px var(--line), 0 40px 90px -40px rgba(0, 0, 0, .95), 0 0 140px -50px rgba(57, 255, 136, .45);
+}
+.tcn-visor video { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 899px) { .tcn-visor { width: min(84%, 320px); } }
+.tcn-visor::before {   /* esquinas del encuadre */
+  content: ""; position: absolute; inset: 16px; z-index: 2; pointer-events: none; opacity: .9;
+  --e: linear-gradient(var(--cream), var(--cream));
+  background:
+    var(--e) top left / 24px 2px no-repeat, var(--e) top left / 2px 24px no-repeat,
+    var(--e) top right / 24px 2px no-repeat, var(--e) top right / 2px 24px no-repeat,
+    var(--e) bottom left / 24px 2px no-repeat, var(--e) bottom left / 2px 24px no-repeat,
+    var(--e) bottom right / 24px 2px no-repeat, var(--e) bottom right / 2px 24px no-repeat;
+}
+.tcn-visor::after {    /* sombra arriba y abajo para leer los textos */
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(6, 5, 5, .6), transparent 20%, transparent 72%, rgba(6, 5, 5, .85));
+}
+.tcn-rec, .tcn-tc {
+  position: absolute; top: 30px; z-index: 3;
+  font-size: .72rem; font-weight: 500; letter-spacing: .12em; color: var(--cream);
+  font-variant-numeric: tabular-nums;
+}
+.tcn-rec { left: 32px; display: flex; align-items: center; gap: .45rem; }
+.tcn-rec::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: #FF4D4D; box-shadow: 0 0 10px rgba(255, 77, 77, .8); animation: tcn-rec 1.2s steps(1) infinite; }
+.tcn-tc { right: 32px; }
+.tcn-visor figcaption { position: absolute; left: 32px; right: 32px; bottom: 30px; z-index: 3; font-size: .78rem; color: var(--cream-dim); }
+@keyframes tcn-rec { 50% { opacity: .15; } }
+
+/* --- secciones --- */
+.tcn-sec { padding-top: clamp(3.5rem, 9vh, 6rem); }
+.tcn-sec > .eyebrow, .tcn-asi .eyebrow, .tcn-postular-intro .eyebrow { display: block; margin-bottom: .85rem; }
+.tcn-sec h2 { font-size: clamp(1.9rem, 4.6vw, 3rem); margin: 0 0 1rem; max-width: 22ch; }
+.tcn .tcn-intro { max-width: 42rem; margin: -.25rem 0 1.75rem; }
+
+/* --- tarjetas por oficio --- */
+.tcn-roles { display: grid; gap: 14px; margin-top: 1.75rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+.tcn-rol {
+  position: relative; overflow: hidden; border-radius: 18px;
+  display: flex; flex-direction: column;
+  background: var(--bg-2); box-shadow: 0 0 0 1px var(--line);
+  transition: box-shadow .5s var(--ease-out);
+}
+/* la imagen arriba, completa: en Edición se ven la toma y sus subtítulos */
+.tcn-rol-media { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: var(--bg-3); }
+.tcn-rol-media::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 22%; pointer-events: none;
+  background: linear-gradient(to top, var(--bg-2), transparent);
+}
+.tcn-rol-media img, .tcn-rol-media video {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: saturate(.9);
+  transition: transform 1.4s var(--ease-out), filter .6s var(--ease-out);
+}
+.tcn-rol-media video { object-position: 50% 12%; }
+.tcn-rol-media .pos-camara { object-position: 60% 40%; }
+.tcn-rol-media .pos-foto { object-position: 40% 50%; }
+.tcn-rol-cuerpo { flex: 1; display: flex; flex-direction: column; padding: .4rem 1.45rem 1.55rem; }
+.tcn-rol .n { font-size: .72rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
+.tcn-rol h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.6rem, 2.6vw, 1.95rem); color: var(--cream); letter-spacing: 0; margin: .45rem 0 .55rem; }
+.tcn .tcn-rol p { font-size: .95rem; margin: 0 0 1.2rem; color: var(--cream-dim); max-width: 32ch; }
+.tcn-tag {
+  margin-top: auto; align-self: flex-start; font-size: .75rem; padding: .38rem .8rem; border-radius: 100px;
+  background: var(--accent-dim); color: var(--accent);
+  box-shadow: inset 0 0 0 1px rgba(57, 255, 136, .4);
+}
+@media (hover: hover) and (pointer: fine) {
+  .tcn-rol:hover { box-shadow: 0 0 0 1px rgba(57, 255, 136, .45), 0 30px 60px -30px rgba(0, 0, 0, .9); }
+  .tcn-rol:hover .tcn-rol-media img, .tcn-rol:hover .tcn-rol-media video { transform: scale(1.04); filter: saturate(1); }
+}
+
+/* --- cómo trabajamos --- */
+.tcn-asi { display: grid; gap: clamp(2.25rem, 5vw, 4.5rem); align-items: center; }
+@media (min-width: 900px) { .tcn-asi { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); } }
+.tcn-collage { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.tcn-collage img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 14px; display: block; box-shadow: 0 0 0 1px var(--line); }
+.tcn-collage img:first-child { object-position: 30% 50%; }
+.tcn-collage img:last-child { margin-top: clamp(2rem, 6vw, 4rem); object-position: 40% 50%; }
+.tcn-puntos { grid-template-columns: 1fr !important; gap: 1rem !important; margin: 1.5rem 0 0; }
+.tcn .tcn-puntos li { line-height: 1.6; }
+
+/* --- logos --- */
+.tcn-logos { grid-template-columns: repeat(3, 1fr); }
+@media (min-width: 720px) { .tcn-logos { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 1040px) { .tcn-logos { grid-template-columns: repeat(6, 1fr); } }
+
+/* --- formulario con sus pasos a un lado --- */
+.tcn-postular { display: grid; gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+@media (min-width: 980px) {
+  .tcn-postular { grid-template-columns: minmax(0, .78fr) minmax(0, 1.22fr); }
+  .tcn-postular-intro { position: sticky; top: calc(var(--nav-h) + 2rem); }
+}
+.tcn-postular { scroll-margin-top: calc(var(--nav-h) - 2rem); }
+.tcn-postular-intro > p { max-width: 30rem; }
+.tcn-pasos { list-style: none; padding: 0; margin: 1.75rem 0 0; counter-reset: paso; display: grid; gap: 1.1rem; }
+.tcn .tcn-pasos li { counter-increment: paso; position: relative; padding-left: 3rem; line-height: 1.55; }
+.tcn-pasos li::before {
+  content: counter(paso, decimal-leading-zero);
+  position: absolute; left: 0; top: -.1rem;
+  width: 2.1rem; height: 2.1rem; border-radius: 50%; display: grid; place-content: center;
+  font-size: .72rem; font-weight: 500; letter-spacing: .06em; color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent-dim);
+}
+.tcn-firma { display: flex; align-items: center; gap: .9rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.tcn-firma img { width: 54px; height: 54px; border-radius: 50%; object-fit: cover; object-position: 50% 20%; flex: none; box-shadow: 0 0 0 1px var(--line); }
+.tcn .tcn-firma p { margin: 0; font-size: .88rem; line-height: 1.5; }
 
 .tcn-form {
-  background: var(--bg-2); border: 1px solid var(--line); border-radius: 18px;
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: 20px;
   padding: clamp(1.35rem, 4vw, 2.25rem);
-  scroll-margin-top: calc(var(--nav-h) + 1rem);
 }
-.doc .tcn-form h2 { margin: 0 0 .35rem; font-size: clamp(1.6rem, 3.6vw, 2.1rem); }
-.doc .tcn-intro { margin: 0 0 1.5rem; font-size: .9rem; color: var(--muted); }
-
 .fila-2 { display: grid; gap: 1.15rem; }
 @media (min-width: 640px) { .fila-2 { grid-template-columns: 1fr 1fr; } }
 
 .campo label .opc { text-transform: none; letter-spacing: 0; font-weight: 400; }
-.doc .campo .ayuda { margin: 0; font-size: .82rem; line-height: 1.5; color: var(--muted); }
+.tcn .campo .ayuda { margin: 0; font-size: .82rem; line-height: 1.5; color: var(--muted); }
 
 .campo select {
   width: 100%;
@@ -230,8 +358,13 @@ a.srv-tarjeta h3::after { content: " →"; color: var(--accent); }
 .campo input::placeholder, .campo textarea::placeholder { color: var(--muted); opacity: .8; }
 .campo [aria-invalid="true"] { box-shadow: inset 0 0 0 1px #FF8B7A; }
 
-.doc .form-legal { margin: 0; font-size: .82rem; color: var(--muted); }
+.tcn .form-legal { margin: 0; font-size: .82rem; color: var(--muted); }
 
 .tcn-listo { outline: none; }
-.doc .tcn-listo h2 { margin: .6rem 0 .8rem; }
-.doc .tcn-listo h2 span { color: var(--accent); }
+.tcn .tcn-listo h2 { margin: .6rem 0 .8rem; }
+.tcn .tcn-listo h2 span { color: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .tcn-rec::before { animation: none; }
+  .tcn-rol-media img, .tcn-rol-media video { transition: none; }
+}
