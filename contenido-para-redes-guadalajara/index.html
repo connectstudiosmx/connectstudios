@@ -11,14 +11,14 @@
 <meta property="og:title" content="Contenido para redes sociales en Guadalajara · Connect Studios">
 <meta property="og:description" content="12 videos verticales al mes para tu negocio en Guadalajara: guiones acompañados, grabación, edición y publicación en tus redes. Desde $14,499 MXN más IVA.">
 <meta property="og:url" content="https://connectstudios.mx/contenido-para-redes-guadalajara/">
-<meta property="og:image" content="https://connectstudios.mx/assets/img/reel-poster-vertical.webp">
+<meta property="og:image" content="https://connectstudios.mx/assets/img/dorma-celulas-poster.webp">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://connectstudios.mx/contenido-para-redes-guadalajara/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,100,400..600;1,100..125,800..900&family=Source+Serif+4:opsz,wght@8..60,300..600&display=swap">
-<link rel="stylesheet" href="/styles.css?v=20261001b">
-<link rel="stylesheet" href="/paginas.css?v=20261001b">
+<link rel="stylesheet" href="/styles.css?v=20261001c">
+<link rel="stylesheet" href="/paginas.css?v=20261001c">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -145,11 +145,12 @@
       <a class="link-quiet" href="#ejemplos">Ver ejemplos</a>
     </div>
   </div>
-  <figure class="srv-media vertical">
-    <video autoplay muted loop playsinline preload="metadata" poster="/assets/img/reel-poster-vertical.webp" aria-label="Fragmento del demo reel en formato vertical">
-      <source src="/assets/video/reel-loop-vertical.mp4" type="video/mp4">
+  <figure class="srv-media vertical" data-completo="/assets/video/dorma-celulas.mp4">
+    <video autoplay muted loop playsinline preload="metadata" poster="/assets/img/dorma-celulas-poster.webp" aria-label="Fragmento de un video vertical para Dorma con Edgar Temores">
+      <source src="/assets/video/dorma-celulas-loop.mp4" type="video/mp4">
     </video>
-    <figcaption>Formato vertical</figcaption>
+    <button class="srv-sonido" type="button">▶ Ver con sonido</button>
+    <figcaption>Dorma · Edgar Temores</figcaption>
   </figure>
 </section><section class="srv-sec" id="para-quien">
   <p class="eyebrow">Para quién es</p>
@@ -218,6 +219,25 @@
   <a class="btn" href="https://portal.connectstudios.mx/solicitud/?utm_source=connectstudios.mx&utm_medium=web&utm_campaign=paginas-servicio&utm_content=contenido-para-redes-guadalajara">Agenda una llamada</a>
 </section><p style="margin-top:1.5rem;font-size:.95rem">También: <a href="/video-corporativo-guadalajara/">Video corporativo en Guadalajara</a> · <a href="/video-para-eventos-guadalajara/">Video para eventos de empresa</a>. Dudas generales en <a href="/preguntas/">preguntas frecuentes</a>.</p>
 <script>
+// Videos de YouTube: solo se cargan al dar play (modo de privacidad mejorada)
+document.querySelectorAll(".srv-video[data-video]").forEach(function (c) {
+  c.addEventListener("click", function () {
+    if (c.classList.contains("activo")) return;
+    var f = document.createElement("iframe");
+    f.src = "https://www.youtube-nocookie.com/embed/" + c.dataset.video + "?autoplay=1&rel=0&modestbranding=1";
+    f.title = c.dataset.titulo || "Video"; f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen"; f.allowFullscreen = true;
+    c.appendChild(f); c.classList.add("activo");
+  });
+});
+// Video vertical: loop sin sonido; "Ver con sonido" carga el completo
+document.querySelectorAll("[data-completo]").forEach(function (fig) {
+  var v = fig.querySelector("video"), b = fig.querySelector(".srv-sonido");
+  if (!v || !b) return;
+  b.addEventListener("click", function () {
+    v.loop = false; v.muted = false; v.controls = true; v.src = fig.dataset.completo; v.currentTime = 0;
+    v.play(); b.hidden = true; fig.classList.add("activo");
+  });
+});
 if (matchMedia("(prefers-reduced-motion: reduce)").matches) document.querySelectorAll("video[autoplay]").forEach(function (v) { v.pause(); v.removeAttribute("autoplay"); });
 </script>
 </main>
