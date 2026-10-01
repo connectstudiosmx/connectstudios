@@ -1399,6 +1399,10 @@ em { font-style: italic; }
 .footer-legales { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; }
 .footer-legales a { font-size: .78rem; color: var(--muted); transition: color .35s var(--ease-out); }
 .footer-legales a:hover, .footer-legales a:focus-visible, .footer-legales a[aria-current="page"] { color: var(--cream); }
+/* servicios en el pie */
+.footer-servicios { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; width: 100%; }
+.footer-servicios a { font-size: .82rem; color: var(--cream-dim); transition: color .35s var(--ease-out); }
+.footer-servicios a:hover, .footer-servicios a:focus-visible, .footer-servicios a[aria-current="page"] { color: var(--accent); }
 /* nota bajo el boton del formulario */
 .form-legal { font-size: .78rem; color: var(--muted); }
 .form-legal a { color: var(--cream-dim); text-decoration: underline; text-underline-offset: 3px; }

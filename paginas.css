@@ -90,3 +90,82 @@
 @media (prefers-reduced-motion: reduce) {
   .faq summary::after { transition: none; }
 }
+
+/* =============================================================
+   Páginas de servicio (video corporativo, eventos, redes)
+   ============================================================= */
+.srv { max-width: var(--maxw); margin: 0 auto; padding: calc(var(--nav-h) + clamp(2rem, 6vh, 4rem)) var(--gutter) clamp(3.5rem, 9vh, 6rem); }
+.srv p, .srv li { color: var(--cream-dim); }
+.srv strong { color: var(--cream); font-weight: 500; }
+.srv a:not(.btn):not(.srv-tarjeta) { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+
+/* encabezado: texto y foto lado a lado */
+.srv-hero { display: grid; gap: clamp(1.75rem, 4vw, 3.5rem); align-items: center; padding-bottom: clamp(2.5rem, 7vh, 4.5rem); border-bottom: 1px solid var(--line); }
+.srv-hero .doc-titulo { font-size: clamp(2.3rem, 5.4vw, 4.3rem); }
+.srv-hero .doc-lead { margin-bottom: 1.75rem; }
+.srv-acciones { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
+.srv-acciones .link-quiet { text-decoration: none !important; color: var(--cream-dim) !important; }
+.srv-media { position: relative; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); background: var(--bg-2); }
+.srv-media img, .srv-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.srv-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(6, 5, 5, .55), transparent 45%); pointer-events: none; }
+.srv-media figcaption { position: absolute; left: 1rem; bottom: .85rem; z-index: 1; font-size: .78rem; color: var(--cream-dim); letter-spacing: .02em; }
+.srv-media.vertical { max-width: 340px; aspect-ratio: 9 / 16; justify-self: center; }
+.srv-media.horizontal { aspect-ratio: 4 / 3; }
+@media (min-width: 900px) {
+  .srv-hero { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); }
+  .srv-media.horizontal { aspect-ratio: 4 / 5; }
+}
+
+/* secciones */
+.srv-sec { padding-top: clamp(3rem, 8vh, 5rem); }
+.srv-sec > h2 { font-size: clamp(1.8rem, 4.4vw, 2.8rem); margin: .6rem 0 .9rem; max-width: 36rem; }
+.srv-intro { max-width: 42rem; margin-bottom: 1.75rem; font-size: 1.02rem; }
+
+/* tarjetas */
+.srv-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); }
+.srv-tarjeta { background: var(--bg-2); border: 1px solid var(--line); border-radius: 14px; padding: 1.25rem 1.3rem 1.35rem; transition: border-color .4s var(--ease-out); }
+.srv-tarjeta:hover { border-color: rgba(57, 255, 136, .35); }
+.srv-tarjeta .n { display: block; font-size: .72rem; font-weight: 500; letter-spacing: .14em; color: var(--accent); margin-bottom: .65rem; }
+.srv-tarjeta h3 { font-family: var(--sans); font-size: 1.06rem; font-weight: 500; color: var(--cream); letter-spacing: 0; line-height: 1.3; margin-bottom: .45rem; }
+.srv-tarjeta p { font-size: .94rem; margin: 0; }
+a.srv-tarjeta { display: block; text-decoration: none; }
+a.srv-tarjeta h3::after { content: " →"; color: var(--accent); }
+
+/* lista con palomitas */
+.srv-checks { list-style: none; padding: 0; display: grid; gap: .7rem 2rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+.srv-checks li { position: relative; padding-left: 1.9rem; }
+.srv-checks li::before { content: ""; position: absolute; left: 0; top: .3em; width: 1.05rem; height: 1.05rem; border-radius: 50%; background: var(--accent-dim); box-shadow: inset 0 0 0 1px rgba(57, 255, 136, .5); }
+.srv-checks li::after { content: ""; position: absolute; left: .36rem; top: .52em; width: .32rem; height: .55rem; border: solid var(--accent); border-width: 0 2px 2px 0; transform: rotate(45deg); }
+
+/* ejemplos */
+.srv-ejemplos { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+.srv-ejemplo { background: var(--bg-2); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; }
+.srv-ejemplo img, .srv-ejemplo video { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; }
+.srv-ejemplo .cuerpo { padding: 1.1rem 1.25rem 1.3rem; }
+.srv-ejemplo .tipo { font-size: .7rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.srv-ejemplo h3 { font-family: var(--serif); font-size: 1.45rem; color: var(--cream); margin: .35rem 0 .5rem; }
+.srv-ejemplo p { font-size: .94rem; margin: 0 0 .6rem; }
+.srv-ejemplo blockquote { margin: 0; font-family: var(--serif); font-style: italic; color: var(--cream); font-size: 1.02rem; line-height: 1.5; }
+.srv-ejemplo .quien { display: flex; align-items: center; gap: .7rem; margin-top: .9rem; font-size: .85rem; }
+.srv-ejemplo .quien img { width: 40px; height: 40px; aspect-ratio: 1; border-radius: 50%; }
+.srv-galeria { display: grid; gap: 8px; grid-template-columns: repeat(2, 1fr); }
+.srv-galeria img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 10px; }
+@media (min-width: 720px) { .srv-galeria { grid-template-columns: repeat(4, 1fr); } }
+.srv .logos { margin-top: 1.25rem; }
+@media (min-width: 720px) { .srv .logos { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 960px) { .srv .logos { grid-template-columns: repeat(6, 1fr); } }
+
+/* pasos */
+.srv-pasos { list-style: none; padding: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); counter-reset: paso; }
+.srv-pasos li { counter-increment: paso; border-top: 1px solid var(--line); padding-top: 1rem; }
+.srv-pasos li::before { content: counter(paso, decimal-leading-zero); display: block; font-size: .78rem; font-weight: 500; letter-spacing: .1em; color: var(--accent); margin-bottom: .5rem; }
+.srv-pasos h3 { font-family: var(--sans); font-size: 1.02rem; font-weight: 500; color: var(--cream); letter-spacing: 0; margin-bottom: .35rem; }
+.srv-pasos p { font-size: .93rem; margin: 0; }
+
+/* precio */
+.srv-precio { display: grid; gap: 1.5rem 3rem; align-items: center; background: var(--bg-2); border: 1px solid rgba(57, 255, 136, .28); border-radius: 20px; padding: clamp(1.5rem, 4vw, 2.5rem); }
+@media (min-width: 860px) { .srv-precio { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); } }
+.srv .srv-monto { font-family: var(--display); font-style: italic; font-weight: 900; font-stretch: 114%; font-size: clamp(2.2rem, 5.5vw, 3.6rem); line-height: .95; color: var(--cream); text-transform: uppercase; }
+.srv-monto small { display: block; font-family: var(--sans); font-style: normal; font-weight: 400; font-stretch: 100%; font-size: .85rem; text-transform: none; letter-spacing: .02em; color: var(--muted); margin-top: .5rem; }
+.srv-precio .eyebrow { display: block; margin-bottom: .6rem; }
+.srv-precio .srv-checks { grid-template-columns: 1fr; }
