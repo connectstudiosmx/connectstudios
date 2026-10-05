@@ -641,6 +641,7 @@
         .then(function (r) {
           if (!r.ok) throw new Error("respuesta " + r.status);
           form.reset();
+          if (window.csMedir) window.csMedir("Contact", "generate_lead");   /* ver medicion.js */
           decir("Listo. El mensaje llegó — te contesto en menos de 24 horas.", "ok");
           if (boton) boton.textContent = "Enviado";
         })
