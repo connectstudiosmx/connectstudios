@@ -1058,9 +1058,14 @@ em { font-style: italic; }
   color: var(--cream-dim); max-width: 46ch;
 }
 
-/* columna de medios: el clip y una BTS, desalineados */
-.proceso-media { display: grid; gap: clamp(1rem, 2.5vw, 1.75rem); }
+/* columna de medios: el clip y una BTS, desalineados. En dos columnas
+   desde celular: apilados a lo ancho ocupaban casi dos pantallas. */
+.proceso-media {
+  display: grid; grid-template-columns: 1fr 1fr; align-items: start;
+  gap: clamp(.75rem, 2.5vw, 1.75rem);
+}
 .proceso-clip, .proceso-foto { margin: 0; will-change: transform; }
+.proceso-foto { margin-top: clamp(2rem, 6vw, 4rem); }
 .proceso-clip-2 { grid-column: 1 / -1; margin-top: clamp(.5rem, 2vw, 1.5rem); }
 .proceso-clip video,
 .proceso-foto img {
@@ -1112,10 +1117,11 @@ em { font-style: italic; }
 .clientes-lead { max-width: 44ch; font-size: .96rem; line-height: 1.64; color: var(--cream-dim); }
 
 /* Tarjetas blancas: un logo multicolor sobre negro se ve sucio; sobre
-   su rectangulo blanco se ve deliberado. El recorte ya trae el fondo. */
+   su rectangulo blanco se ve deliberado. El recorte ya trae el fondo.
+   Tres por renglon desde celular: en dos se volvian una lista larga. */
 .logos {
   list-style: none; padding: 0;
-  display: grid; grid-template-columns: repeat(2, 1fr);
+  display: grid; grid-template-columns: repeat(3, 1fr);
   gap: clamp(.6rem, 1.6vw, 1.1rem);
 }
 .logos li {
@@ -1459,12 +1465,47 @@ em { font-style: italic; }
   .hero-titulo { font-stretch: 100%; font-size: clamp(1.6rem, 8.6vw, 2.6rem); }
 
   /* Tres en fila en un celular dejan fotos de 105 px: ahi ya no se ve
-     que hay un cliente enfrente. Se reacomodan en collage, con Manuel
-     al centro y mas grande, conservando el orden cliente-Manuel-cliente. */
-  .criterio-fotos { grid-template-columns: 1fr 1fr; gap: 1rem; }
+     que hay un cliente enfrente. Se reacomodan en collage: los dos
+     clientes apilados a la izquierda y Manuel a la derecha, mas grande
+     y centrado entre ellos. Antes iban en escalera y ocupaban mas de una
+     pantalla; asi caben en media. */
+  .criterio-fotos {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+    gap: .75rem; align-items: center;
+  }
   .criterio-foto:first-child { grid-column: 1; grid-row: 1; margin-top: 0; }
-  .criterio-foto-centro      { grid-column: 1 / -1; grid-row: 2; width: 78%; margin: 0 auto; }
-  .criterio-foto:last-child  { grid-column: 2; grid-row: 3; margin-top: 0; }
+  .criterio-foto-centro      { grid-column: 2; grid-row: 1 / 3; }
+  .criterio-foto:last-child  { grid-column: 1; grid-row: 2; margin-top: 0; }
+}
+
+/* Celular y tableta: ninguna foto a lo ancho de la pantalla. En
+   computadora cada imagen comparte renglon con texto o con otra imagen;
+   aqui se conserva esa idea en vez de apilarlas a sangre una tras otra. */
+@media (max-width: 959px) {
+  /* El caso: el primer still va solo y corrido a la derecha; los demas,
+     en pareja y desfasados, como el collage de computadora. */
+  .caso-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: .75rem; align-items: start; }
+  .caso-bloque { grid-column: 1 / -1; }
+  .still-a { grid-column: 1 / -1; width: 84%; justify-self: end; }
+  .still-c, .still-e { margin-top: 1.75rem; }
+
+  /* Sobre mí: la foto a un lado del nombre, como en computadora, y los
+     parrafos abajo a todo lo ancho. display: contents mete el encabezado
+     en la rejilla sin tocar el HTML. El primer renglon (1fr) absorbe el
+     alto de la foto, asi el nombre queda al pie, alineado con ella. */
+  .sobre-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    grid-template-rows: 1fr auto auto;
+    column-gap: 1.25rem; row-gap: 0;
+    align-items: end;
+  }
+  .sobre-texto { display: contents; }
+  .sobre-foto { grid-column: 1; grid-row: 1 / 4; }
+  .sobre-texto .eyebrow { grid-column: 2; grid-row: 1; }
+  .sobre-titulo         { grid-column: 2; grid-row: 2; }
+  .sobre-rol            { grid-column: 2; grid-row: 3; margin-bottom: 0; }
+  .sobre-texto > p:not(.eyebrow):not(.sobre-rol) { grid-column: 1 / -1; }
+  .sobre-texto > .sobre-rol + p { margin-top: 2rem; }
 }
 
 @media (min-width: 720px) {
@@ -1474,10 +1515,6 @@ em { font-style: italic; }
   /* dos columnas: los puntuales se leen de un vistazo, sin scroll extra */
   .puntuales-lista { grid-template-columns: repeat(2, 1fr); column-gap: clamp(2rem, 5vw, 4rem); }
   .puntuales-lista li:nth-last-child(2) { border-bottom: 1px solid var(--line); }
-  .logos { grid-template-columns: repeat(3, 1fr); }
-  /* el clip y la foto se turnan el lado, no se apilan */
-  .proceso-media { grid-template-columns: 1fr 1fr; align-items: start; }
-  .proceso-foto { margin-top: clamp(2rem, 6vw, 4rem); }
 }
 
 /* El collage del caso: rejilla de 12 con los stills desalineados.
@@ -1494,7 +1531,6 @@ em { font-style: italic; }
   .contacto-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); align-items: start; }
   .sobre-grid { grid-template-columns: minmax(0, .8fr) minmax(0, 1fr); }
   .citas { grid-template-columns: repeat(2, 1fr); }
-  .proceso-media { grid-template-columns: 1fr 1fr; }
 
   .caso-bloque:nth-of-type(1) { grid-column: 1 / 6;  padding-top: 2rem; }
   .still-a                    { grid-column: 7 / 13; }
