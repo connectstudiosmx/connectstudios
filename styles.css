@@ -336,6 +336,9 @@ em { font-style: italic; }
 
 /* sobre imagen, el gris apagado se pierde: aqui la etiqueta va mas clara */
 .hero-body .eyebrow { margin-bottom: clamp(1.25rem, 3vh, 1.9rem); color: var(--cream-dim); }
+/* la etiqueta es el H1 (por Google): se le quita el interlineado apretado
+   de los titulos para que mida lo mismo que cuando era un parrafo */
+.hero-body h1.eyebrow { line-height: 1.6; }
 
 /* Un poco menos ancho que antes: el titular sigue mandando, pero ya no
    cruza el cuadro entero y deja ver el video. */

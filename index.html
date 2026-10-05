@@ -3,17 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Connect Studios — Video corporativo con dirección creativa | Guadalajara</title>
+<!-- Inicio va por la marca y "productora audiovisual"; "video corporativo
+     en Guadalajara" es de /video-corporativo-guadalajara/. Si las dos
+     paginas apuntan a lo mismo, compiten entre si en Google. -->
+<title>Connect Studios · Productora audiovisual en Guadalajara</title>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/icono/icono-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icono/icono-192.png">
 <link rel="apple-touch-icon" href="/assets/img/icono/icono-180.png">
-<meta name="description" content="Producimos video corporativo para empresas de Guadalajara que ya tienen reputación y necesitan que su imagen esté a la altura. Retainer mensual de contenido y proyectos por encargo.">
+<meta name="description" content="Productora de video en Guadalajara para empresas que ya tienen reputación: contenido mensual para redes y video corporativo con dirección creativa.">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
 <meta property="og:site_name" content="Connect Studios">
-<meta property="og:title" content="Connect Studios — Video corporativo con dirección creativa">
+<meta property="og:title" content="Connect Studios · Productora audiovisual en Guadalajara">
 <meta property="og:description" content="Video corporativo para negocios cuya reputación va muy por delante de su imagen.">
 <!-- La ruta absoluta es obligatoria: WhatsApp, LinkedIn y compañía no
      resuelven rutas relativas. Empieza a funcionar cuando el dominio
@@ -40,7 +43,7 @@
 <!-- la misma regla que el <picture> del hero: cada pantalla precarga solo su foto -->
 <link rel="preload" as="image" href="assets/img/reel-poster-vertical.webp" media="(max-aspect-ratio: 4/5)" fetchpriority="high">
 <link rel="preload" as="image" href="assets/img/reel-poster.webp" media="not all and (max-aspect-ratio: 4/5)" fetchpriority="high">
-<link rel="stylesheet" href="styles.css?v=20261004">
+<link rel="stylesheet" href="styles.css?v=20261004b">
 
 <!-- Marca que hay JS antes del primer pintado: evita que el contenido
      aparezca y luego salte al animarse. Sin JS, .js-on nunca existe y
@@ -69,14 +72,20 @@ setTimeout(function () {
       "founder": { "@type": "Person", "name": "Manuel Alejandro Pérez Becerra" },
       "sameAs": [
         "https://www.youtube.com/@connect.studiosmx",
-        "https://www.instagram.com/connect.stu/"
+        "https://www.instagram.com/connect.stu/",
+        "https://www.facebook.com/100084201227529"
       ]
     },
     {
       "@type": "Person",
       "name": "Manuel Alejandro Pérez Becerra",
+      "alternateName": "Manuel Pérez",
       "jobTitle": "Productor audiovisual y director creativo",
+      "description": "Productor audiovisual y director creativo en Guadalajara. Cinco años dirigiendo contenido, con más de 100 proyectos y más de 250 videos, desde campañas publicitarias hasta documentales corporativos.",
+      "image": "https://connectstudios.mx/assets/img/manuel.webp",
       "email": "manuelperez@connectstudios.mx",
+      "knowsAbout": ["Video corporativo", "Dirección creativa", "Contenido para redes sociales", "Producción audiovisual"],
+      "sameAs": ["https://www.instagram.com/manuelperez.be/"],
       "worksFor": { "@type": "Organization", "name": "Connect Studios" }
     }
   ]
@@ -152,14 +161,16 @@ setTimeout(function () {
 
   <!-- Capa 5: contenido -->
   <div class="hero-body">
-    <p class="eyebrow reveal">Productora audiovisual · Guadalajara</p>
+    <!-- El H1 es la etiqueta chica: dice lo que la gente busca en Google.
+         El lema se ve igual de grande, pero ya no es el titulo de la pagina. -->
+    <h1 class="eyebrow reveal">Productora audiovisual · Guadalajara</h1>
 
-    <h1 class="hero-titulo" id="hero-titulo">
+    <p class="hero-titulo" id="hero-titulo">
       <span class="line"><span class="line-i">Tú construiste</span></span>
       <span class="line"><span class="line-i">el negocio.</span></span>
       <span class="line"><span class="line-i">Que se vea bien</span></span>
       <span class="line"><span class="line-i"><em>me toca a mí.</em></span></span>
-    </h1>
+    </p>
 
     <!-- Barra inferior tipo cinta: la bajada a un lado, las dos acciones al
          otro. Una linea fina la separa del titular. -->
@@ -669,8 +680,10 @@ setTimeout(function () {
       </p>
 
       <p class="reveal">
-        Llevo varios años dirigiendo contenido, desde campañas publicitarias
-        hasta documentales corporativos. Mi trabajo es convertir una idea en
+        Llevo cinco años dirigiendo contenido: más de 100 proyectos y más de
+        250 videos, desde campañas publicitarias hasta documentales
+        corporativos, para marcas de arrendamiento, seguros, finanzas, moda,
+        belleza y bebidas. Mi trabajo es convertir una idea en
         una pieza que la gente entienda y que mueva algo: ventas, confianza,
         o la relación con un cliente.
       </p>
