@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Página aislada: ninguna otra página del sitio la enlaza, no está en el sitemap
+     y Google no la indexa. Solo se llega con el link directo. -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Boda · foto + video · Connect Studios</title>
+<meta name="description" content="Foto y video de bodas: +1,000 fotos, tráiler y película. Elijan su fecha y vean el precio.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/bodas/bodas.css?v=20261006">
+</head>
+<body>
+
+<header class="hero">
+  <video muted loop playsinline autoplay preload="none" poster="/bodas/video/portada.jpg" data-src="/bodas/video/portada.mp4" data-cel="/bodas/video/portada-cel.mp4"></video>
+  <a class="logo" href="/bodas/"><img src="/assets/img/logo-connect.webp" width="640" height="180" alt="Connect Studios"></a>
+  <div class="ttl"><h1>Boda</h1><p>foto + video</p></div>
+  <div class="tag">Tu boda de manera natural</div>
+</header>
+
+<section class="box" id="reservar">
+  <h2 class="serif">Entregables</h2>
+  <div class="ent"><span>+1,000 fotos</span><span>~3 min tráiler</span><span>10–15 min película</span><span>Archivos originales</span></div>
+
+  <div class="step" id="s1">
+    <div class="head"><span></span><span id="lbl">Selecciona una fecha disponible</span><span></span></div>
+    <div class="cal">
+      <div><div class="yrs" id="yrs"></div><div class="mos" id="mos"></div></div>
+      <div class="days" id="days"></div>
+    </div>
+    <button type="button" class="cta" id="go" disabled>Revisar precio</button>
+  </div>
+
+  <div class="step" id="s2" hidden>
+    <div class="head"><button type="button" class="back" id="bk" aria-label="Regresar">‹</button><span>¿Dónde será su boda?</span><span></span></div>
+    <div class="where">
+      <div>
+        <label class="f"><small>País</small><select id="pais"></select></label>
+        <label class="f" id="edoF"><small>Estado</small><select id="edo"></select></label>
+        <label class="f"><input id="lugar" placeholder="Lugar de recepción"></label>
+        <label class="f"><input id="nom" placeholder="Nombres de los novios" autocomplete="name"></label>
+        <label class="f"><input id="mail" type="email" placeholder="Correo" autocomplete="email"></label>
+        <label class="f"><input id="wa" type="tel" placeholder="WhatsApp" autocomplete="tel"></label>
+      </div>
+      <div class="sum">
+        <strong id="fecha"></strong>
+        <div><span>Foto + Video: 12 horas</span><span id="base"></span></div>
+        <div><span>Sesión de foto</span><span>Cortesía</span></div>
+        <div><span>Vuelos y viáticos</span><span id="via"></span></div>
+        <div><span>Total</span><span id="tot" style="font-weight:600"></span></div>
+        <span class="note">Dos personas del equipo. El resto se liquida dos semanas antes de la boda.</span>
+      </div>
+    </div>
+    <button type="button" class="cta" id="res">Reservar</button>
+    <p class="err" id="err" role="alert"></p>
+  </div>
+
+  <div class="step ok" id="s3" hidden>
+    <h3 class="serif">¡Fecha apartada! 💍</h3>
+    <p>Recibimos su anticipo. Les escribimos por WhatsApp en menos de 24 horas para conocerlos y empezar a planear.</p>
+  </div>
+</section>
+
+<h2 class="frase"><span class="on">Miren estas<br>historias de amor</span><span class="">Hechas con<br>el corazón</span><span class="">Hagamos<br>poesía juntos</span><span class="">Amor y luz<br>en cada recuerdo</span><span class="">Los protagonistas<br>de su propia película</span><span class="">Los recuerdos<br>se quedan en el corazón</span></h2>
+<div data-carrusel>
+  <div class="carrusel"><a class="tarjeta" href="/bodas/fernanda-y-oliver/"><img src="/bodas/img/fernanda-y-oliver/424.webp" width="933" height="1400" alt="Fernanda &amp; Oliver" loading="lazy" decoding="async"><div><strong>Fernanda &amp; Oliver</strong><span>Jardín de eventos · 25 de julio de 2026</span></div></a><a class="tarjeta" href="/bodas/fatima-y-antonio/"><img src="/bodas/img/fatima-y-antonio/205.webp" width="933" height="1400" alt="Fátima &amp; Antonio" loading="lazy" decoding="async"><div><strong>Fátima &amp; Antonio</strong><span>Salón de eventos · 21 de febrero de 2026</span></div></a><a class="tarjeta" href="/bodas/arianna-y-luis/"><img src="/bodas/img/arianna-y-luis/320.webp" width="933" height="1400" alt="Arianna &amp; Luis" loading="lazy" decoding="async"><div><strong>Arianna &amp; Luis</strong><span>Jardín Calet · 22 de mayo de 2026</span></div></a></div>
+  <div class="flechas"><button type="button" class="ant" aria-label="Anterior">←</button><button type="button" class="sig" aria-label="Siguiente">→</button></div>
+</div>
+
+<h2 class="frase fija"><span>Su amor merece<br>un gran estreno</span></h2>
+<div class="mosaico" data-lb><button type="button"><img src="/bodas/img/fernanda-y-oliver/427.webp" width="1400" height="933" alt="Boda" loading="lazy" decoding="async"></button><button type="button"><img src="/bodas/img/fatima-y-antonio/205.webp" width="933" height="1400" alt="Boda" loading="lazy" decoding="async"></button><button type="button"><img src="/bodas/img/arianna-y-luis/320.webp" width="933" height="1400" alt="Boda" loading="lazy" decoding="async"></button><button type="button"><img src="/bodas/img/fatima-y-antonio/055.webp" width="933" height="1400" alt="Boda" loading="lazy" decoding="async"></button><button type="button"><img src="/bodas/img/fernanda-y-oliver/013.webp" width="933" height="1400" alt="Boda" loading="lazy" decoding="async"></button><button type="button"><img src="/bodas/img/arianna-y-luis/369.webp" width="1400" height="933" alt="Boda" loading="lazy" decoding="async"></button><button type="button"><img src="/bodas/img/fatima-y-antonio/067.webp" width="933" height="1400" alt="Boda" loading="lazy" decoding="async"></button><button type="button"><img src="/bodas/img/fernanda-y-oliver/392.webp" width="1400" height="933" alt="Boda" loading="lazy" decoding="async"></button><button type="button"><img src="/bodas/img/arianna-y-luis/379.webp" width="1400" height="933" alt="Boda" loading="lazy" decoding="async"></button><button type="button"><img src="/bodas/img/fatima-y-antonio/208.webp" width="933" height="1400" alt="Boda" loading="lazy" decoding="async"></button><button type="button"><img src="/bodas/img/arianna-y-luis/008.webp" width="933" height="1400" alt="Boda" loading="lazy" decoding="async"></button><button type="button"><img src="/bodas/img/fernanda-y-oliver/378.webp" width="1400" height="933" alt="Boda" loading="lazy" decoding="async"></button><button type="button"><img src="/bodas/img/arianna-y-luis/283.webp" width="933" height="1400" alt="Boda" loading="lazy" decoding="async"></button><button type="button"><img src="/bodas/img/fatima-y-antonio/123.webp" width="933" height="1400" alt="Boda" loading="lazy" decoding="async"></button><button type="button"><img src="/bodas/img/arianna-y-luis/216.webp" width="1400" height="933" alt="Boda" loading="lazy" decoding="async"></button><button type="button"><img src="/bodas/img/fernanda-y-oliver/305.webp" width="1400" height="933" alt="Boda" loading="lazy" decoding="async"></button><button type="button"><img src="/bodas/img/fatima-y-antonio/186.webp" width="933" height="1400" alt="Boda" loading="lazy" decoding="async"></button><button type="button"><img src="/bodas/img/arianna-y-luis/335.webp" width="1400" height="933" alt="Boda" loading="lazy" decoding="async"></button></div>
+
+<div class="sec"><small>Mírenlas completas</small><h2 class="serif">Sus películas</h2></div>
+<div class="pelis"><button type="button" class="peli" data-yt="r3cNG7a-VLU" aria-label="Ver la película de Fernanda &amp; Oliver"><video muted loop playsinline preload="none" data-src="/bodas/video/avance-fernanda-y-oliver.mp4" poster="/bodas/video/avance-fernanda-y-oliver.jpg"></video><span class="play"></span><span class="txt"><strong>Fernanda &amp; Oliver</strong><span>Película · 15:45 min</span></span></button><button type="button" class="peli" data-yt="APee4ZFF-ZI" aria-label="Ver la película de Fátima &amp; Antonio"><video muted loop playsinline preload="none" data-src="/bodas/video/avance-fatima-y-antonio.mp4" poster="/bodas/video/avance-fatima-y-antonio.jpg"></video><span class="play"></span><span class="txt"><strong>Fátima &amp; Antonio</strong><span>Película · 17:08 min</span></span></button><button type="button" class="peli" data-yt="A3Ji1rdmPV8" aria-label="Ver la película de Arianna &amp; Luis"><video muted loop playsinline preload="none" data-src="/bodas/video/avance-arianna-y-luis.mp4" poster="/bodas/video/avance-arianna-y-luis.jpg"></video><span class="play"></span><span class="txt"><strong>Arianna &amp; Luis</strong><span>Película · 11:49 min</span></span></button></div>
+
+<div class="sec"><small>Paso a paso</small><h2 class="serif">Cómo funciona</h2></div>
+<div class="pasos"><div><b>1</b><h3>Aparten su fecha</h3><p>Elijan el día y el lugar en el calendario y paguen el 20% de anticipo con tarjeta.</p></div><div><b>2</b><h3>Conozcámonos</h3><p>Una videollamada para planear juntos el día: horarios, lugares y lo que más les importa.</p></div><div><b>3</b><h3>Sesión de cortesía</h3><p>Una sesión de fotos para ustedes dos, antes o después de la boda.</p></div><div><b>4</b><h3>El gran día</h3><p>12 horas de foto y video, con dos personas del equipo cuidando cada momento.</p></div><div><b>5</b><h3>Su entrega</h3><p>Sus fotos en 1 semana y su película en 3 (días hábiles), en una galería en línea en tamaño completo.</p></div></div>
+
+<div class="sec" style="max-width:1000px"><small>Preguntas</small><h2 class="serif"><i>Frecuentes</i></h2></div>
+<div class="faq"><details><summary>¿Cuánto cuesta su servicio?</summary><p>Elijan su fecha y el lugar de su boda en el calendario de esta página y verán el precio exacto, con vuelos y viáticos incluidos.</p></details><details><summary>¿Por qué la película dura más de 10 minutos?</summary><p>Porque su boda merece contarse completa: los votos, los discursos, el baile y la fiesta. Comparen un video tradicional con los nuestros y verán la diferencia. 😉</p></details><details><summary>¿Cuándo es la sesión de cortesía?</summary><p>En cuanto reserven la agendamos. Puede ser antes o después de su boda.</p></details><details><summary>¿Cómo los contratamos?</summary><p>Hacemos una videollamada para conocernos y apartan su fecha desde esta página con el 20% de anticipo.</p></details><details><summary>¿Nos pueden apartar la fecha mientras decidimos?</summary><p>La fecha queda apartada en cuanto se paga el anticipo. Si después tienen que cancelar, el anticipo no se regresa, pero pueden cambiar la fecha según la disponibilidad del calendario.</p></details><details><summary>¿Cuándo tenemos que liquidar?</summary><p>Dos semanas antes de la boda.</p></details><details><summary>¿Cuál es el tiempo de entrega?</summary><p>Las fotos en 1 semana y la película en 3 semanas (días hábiles) después de su boda.</p></details><details><summary>¿Cómo entregan?</summary><p>En una galería en línea, con todas sus fotos en tamaño completo y sus videos listos para descargar.</p></details><details><summary>¿Incluye fotos impresas?</summary><p>No, pero desde su galería pueden mandar a imprimir sus favoritas al tamaño que quieran. Como las fotos se entregan en tamaño completo, también pueden descargarlas e imprimirlas donde prefieran.</p></details><details><summary>¿Cobran viáticos?</summary><p>Los precios de esta página ya incluyen vuelos y viáticos.</p></details><details><summary>¿Hacen bodas fuera de México?</summary><p>Sí. Además de toda la República, viajamos a Belice, Costa Rica y España.</p></details><details><summary>¿Podemos pagar a meses?</summary><p>El anticipo se paga con tarjeta y, según su banco, pueden elegir 3 meses sin intereses.</p></details><details><summary>¿Cuántas personas van?</summary><p>Dos personas del equipo, una de foto y una de video, durante 12 horas.</p></details><details><summary>¿Entregan los archivos originales?</summary><p>Sí, reciben también los archivos originales.</p></details></div>
+<footer class="pie">
+  <div class="pie-in">
+    <div class="pie-fotos"><img src="/bodas/img/fatima-y-antonio/055.webp" width="933" height="1400" alt="" loading="lazy" decoding="async"><img src="/bodas/img/arianna-y-luis/268.webp" width="1400" height="933" alt="" loading="lazy" decoding="async"><img src="/bodas/img/fernanda-y-oliver/426.webp" width="1400" height="933" alt="" loading="lazy" decoding="async"><img src="/bodas/img/fatima-y-antonio/204.webp" width="933" height="1400" alt="" loading="lazy" decoding="async"><img src="/bodas/img/arianna-y-luis/298.webp" width="1400" height="933" alt="" loading="lazy" decoding="async"><img src="/bodas/img/fernanda-y-oliver/346.webp" width="933" height="1400" alt="" loading="lazy" decoding="async"></div>
+    <div class="pie-txt">
+      <img src="/assets/img/logo-connect.webp" width="640" height="180" alt="Connect Studios">
+      <p>Foto y video de bodas desde Guadalajara, Jalisco, para toda la República y bodas destino.</p>
+      <a href="https://wa.me/523323362662?text=Hola%2C%20quiero%20informaci%C3%B3n%20de%20foto%20y%20video%20para%20mi%20boda" target="_blank" rel="noopener">WhatsApp · 33 2336 2662</a>
+      <a href="mailto:manuelperez@connectstudios.mx?subject=Boda">manuelperez@connectstudios.mx</a>
+    </div>
+  </div>
+</footer>
+<script src="/bodas/bodas.js?v=20261006" defer></script>
+</body>
+</html>
