@@ -1,29 +1,47 @@
-/* Bodas Premium: portada en video, frases, carrusel, visor de fotos, películas y cotizador.
-   Lo usan la página principal (/bodas/) y cada historia (/bodas/<pareja>/). */
+/* Bodas · Connect Studios: barra, apariciones, cursor, frases, visor, películas y cotizador.
+   Lo usan la página principal (/bodas/), cada historia y las guías. */
 (function () {
+  window.__BODAS = true;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const quieto = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---------- portada en video: versión ligera en celular ---------- */
-  const v = $(".hero video");
-  if (v) {
-    const src = innerWidth < 760 ? v.dataset.cel : v.dataset.src;
-    if (!quieto && src) { v.src = src; v.play().catch(() => {}); }
+  /* ---------- barra: se vuelve sólida al bajar y se esconde mientras sigues bajando ---------- */
+  const barra = $(".barra");
+  if (barra) {
+    let y0 = scrollY;
+    const alto = () => ($(".portada")?.offsetHeight || 0) - 90;
+    const pinta = () => {
+      const y = scrollY;
+      barra.classList.toggle("solida", y > Math.max(alto(), 40));
+      barra.classList.toggle("oculta", y > 400 && y > y0 + 4);
+      if (y < y0 - 4 || y < 400) barra.classList.remove("oculta");
+      y0 = y;
+    };
+    addEventListener("scroll", pinta, { passive: true }); pinta();
+  }
+
+  /* ---------- aparición de bloques al hacer scroll ---------- */
+  if ("IntersectionObserver" in window && !quieto) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("vis"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
+    $$("[data-r]").forEach(el => io.observe(el));
+  } else $$("[data-r]").forEach(el => el.classList.add("vis"));
+
+  /* ---------- cursor "Ver" sobre fotos e historias (solo con mouse) ---------- */
+  if (matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    const c = document.createElement("div"); c.className = "cursor"; document.body.appendChild(c);
+    let x = 0, y = 0, cx = 0, cy = 0, vivo = false;
+    addEventListener("pointermove", e => { x = e.clientX; y = e.clientY; if (!vivo) { vivo = true; requestAnimationFrame(mueve); } }, { passive: true });
+    function mueve() { cx += (x - cx) * .22; cy += (y - cy) * .22; c.style.translate = `${cx}px ${cy}px`; if (Math.abs(x - cx) + Math.abs(y - cy) > .5) requestAnimationFrame(mueve); else vivo = false; }
+    document.addEventListener("pointerover", e => { const t = e.target.closest("[data-ver]"); if (t) { c.textContent = t.dataset.ver; c.classList.add("on"); } });
+    document.addEventListener("pointerout", e => { const t = e.target.closest("[data-ver]"); if (t && !t.contains(e.relatedTarget)) c.classList.remove("on"); });
   }
 
   /* ---------- frases que se van turnando ---------- */
-  $$(".frase:not(.fija)").forEach(f => {
+  $$(".rot").forEach(f => {
     const ss = $$("span", f); let i = 0;
     if (ss.length < 2 || quieto) return;
-    setInterval(() => { ss[i].classList.remove("on"); i = (i + 1) % ss.length; ss[i].classList.add("on"); }, 3400);
-  });
-
-  /* ---------- carrusel de historias ---------- */
-  $$("[data-carrusel]").forEach(c => {
-    const pista = $(".carrusel", c), paso = () => ($(".tarjeta", pista)?.offsetWidth || 300) + 14;
-    $(".ant", c)?.addEventListener("click", () => pista.scrollBy({ left: -paso(), behavior: "smooth" }));
-    $(".sig", c)?.addEventListener("click", () => pista.scrollBy({ left: paso(), behavior: "smooth" }));
+    setInterval(() => { ss[i].classList.remove("on"); i = (i + 1) % ss.length; ss[i].classList.add("on"); }, 3600);
   });
 
   /* ---------- visor a pantalla completa ---------- */
@@ -38,56 +56,58 @@
     $(".cont", lb).textContent = `${pos + 1} / ${lista.length}`;
     [lista[pos + 1], lista[pos - 1]].forEach(s => { if (s) new Image().src = s; });
   }
-  function abre(srcs, i) {
-    lista = srcs; pos = i; muestra();
-    $(".ant", lb).hidden = $(".sig", lb).hidden = $(".cont", lb).hidden = lista.length < 2;
-    lb.classList.add("on"); document.body.style.overflow = "hidden";
-  }
+  function abre() { lb.classList.add("on"); document.body.style.overflow = "hidden"; $(".cursor")?.classList.remove("on"); }
   function cierra() {
     lb.classList.remove("on"); cuerpo.innerHTML = ""; document.body.style.overflow = "";
     if (alCerrar) { alCerrar(); alCerrar = null; }
   }
-  const mueve = d => { if (lista.length > 1) { pos = (pos + d + lista.length) % lista.length; muestra(); } };
+  const mueveLb = d => { if (lista.length > 1) { pos = (pos + d + lista.length) % lista.length; muestra(); } };
   $(".x", lb).onclick = cierra;
-  $(".ant", lb).onclick = () => mueve(-1);
-  $(".sig", lb).onclick = () => mueve(1);
+  $(".ant", lb).onclick = () => mueveLb(-1);
+  $(".sig", lb).onclick = () => mueveLb(1);
   lb.addEventListener("click", e => { if (e.target === lb || e.target === cuerpo) cierra(); });
   addEventListener("keydown", e => {
     if (!lb.classList.contains("on")) return;
     if (e.key === "Escape") cierra();
-    if (e.key === "ArrowRight") mueve(1);
-    if (e.key === "ArrowLeft") mueve(-1);
+    if (e.key === "ArrowRight") mueveLb(1);
+    if (e.key === "ArrowLeft") mueveLb(-1);
   });
   let x0 = null;
   lb.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, { passive: true });
   lb.addEventListener("touchend", e => {
     if (x0 === null) return;
     const dx = e.changedTouches[0].clientX - x0; x0 = null;
-    if (Math.abs(dx) > 50) mueve(dx < 0 ? 1 : -1);
+    if (Math.abs(dx) > 50) mueveLb(dx < 0 ? 1 : -1);
   });
+  // Cada grupo [data-lb] es una galería; el collage repite fotos para el bucle, así que se quitan las repetidas
   $$("[data-lb]").forEach(g => {
-    const bs = $$("button", g);
-    bs.forEach((b, i) => b.addEventListener("click", () => abre(bs.map(x => $("img", x).currentSrc || $("img", x).src), i)));
+    const bs = $$("button[data-full]", g);
+    const unicas = [...new Set(bs.map(b => b.dataset.full))];
+    bs.forEach(b => b.addEventListener("click", () => {
+      lista = unicas; pos = unicas.indexOf(b.dataset.full); muestra();
+      $(".ant", lb).hidden = $(".sig", lb).hidden = $(".cont", lb).hidden = lista.length < 2;
+      abre();
+    }));
   });
 
-  /* ---------- películas: avance sin sonido al estar en pantalla; clic = película completa ---------- */
+  /* ---------- películas: avance sin sonido mientras está en pantalla; clic = película completa ---------- */
   const yt = id => `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1" title="Película de boda" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
   const obs = "IntersectionObserver" in window && !quieto ? new IntersectionObserver(es => es.forEach(e => {
     const vid = e.target;
     if (e.isIntersecting) { if (!vid.src) vid.src = vid.dataset.src; vid.play().catch(() => {}); } else vid.pause();
-  }), { threshold: .35 }) : null;
+  }), { threshold: .3 }) : null;
   $$(".peli").forEach(p => {
     const vid = $("video", p);
     if (vid && obs) obs.observe(vid);
     p.addEventListener("click", () => {
-      lista = []; lb.classList.add("on"); document.body.style.overflow = "hidden";
+      lista = []; abre();
       $(".ant", lb).hidden = $(".sig", lb).hidden = $(".cont", lb).hidden = true;
       cuerpo.innerHTML = `<div class="yt">${yt(p.dataset.yt)}</div>`;
       if (vid) { vid.pause(); alCerrar = () => vid.play().catch(() => {}); }
     });
   });
-  // En la historia el video va incrustado: carga YouTube solo al tocarlo
-  $$(".yt-lite").forEach(b => b.addEventListener("click", () => { b.innerHTML = yt(b.dataset.yt); }, { once: true }));
+  // En la historia la película va incrustada: YouTube se carga solo al tocarla
+  $$(".yt-lite").forEach(b => b.addEventListener("click", () => { b.innerHTML = yt(b.dataset.yt); b.removeAttribute("data-ver"); $(".cursor")?.classList.remove("on"); }, { once: true }));
 
   /* ---------- cotizador ---------- */
   const caja = $("#reservar");
@@ -127,7 +147,7 @@
     }
     id("days").innerHTML = h;
     id("go").disabled = !sel;
-    id("lbl").textContent = sel ? larga(sel) : "Selecciona una fecha disponible";
+    id("lbl").textContent = sel ? larga(sel) : "Elijan su fecha";
   }
   id("yrs").onclick = e => { const b = e.target.closest("[data-y]"); if (b) { y = +b.dataset.y; if (y === hoy.getFullYear() && m < hoy.getMonth()) m = hoy.getMonth(); render(); } };
   id("mos").onclick = e => { const b = e.target.closest("[data-m]"); if (b && !b.disabled) { m = +b.dataset.m; render(); } };
@@ -147,15 +167,13 @@
       lugares(); render();
     }).catch(() => {});
 
+  // Un solo precio según el destino (ya trae lo del viaje), sin desglose
   function precio() {
     const mx = id("pais").value === "México";
     id("edoF").hidden = !mx;
-    const via = mx ? MX[id("edo").value] : INTL[id("pais").value];
-    const tot = BASE + via;
-    id("base").innerHTML = fmt(BASE) + "<sup>MXN</sup>";
-    id("via").innerHTML = via ? fmt(via) + "<sup>MXN</sup>" : "Incluidos";
+    const tot = BASE + (mx ? MX[id("edo").value] : INTL[id("pais").value]);
     id("tot").innerHTML = fmt(tot) + "<sup>MXN</sup>";
-    id("res").textContent = "Reserva con " + fmt(Math.round(tot * RESERVA / 500) * 500);
+    id("res").innerHTML = `Reservar con ${fmt(Math.round(tot * RESERVA / 500) * 500)} <span class="flecha">→</span>`;
     return tot;
   }
   id("pais").onchange = id("edo").onchange = precio;
@@ -168,7 +186,7 @@
     if (nom.length < 3) { err.textContent = "Escriban sus nombres."; return id("nom").focus(); }
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)) { err.textContent = "Revisen el correo."; return id("mail").focus(); }
     if (wa.replace(/\D/g, "").length < 10) { err.textContent = "Escriban un WhatsApp de 10 dígitos."; return id("wa").focus(); }
-    err.textContent = ""; b.disabled = true; const txt = b.textContent; b.textContent = "Abriendo pago…";
+    err.textContent = ""; b.disabled = true; const txt = b.innerHTML; b.textContent = "Abriendo pago…";
     try {
       const r = await fetch(API + "/functions/v1/stripe-pagos", {
         method: "POST", headers: { apikey: LLAVE, "Content-Type": "application/json" },
@@ -179,13 +197,13 @@
       if (!r.ok || !d.url) throw new Error(d.error || "No se pudo abrir el pago. Intenten de nuevo.");
       location.href = d.url;
     } catch (e) {
-      err.textContent = e.message; b.disabled = false; b.textContent = txt;
+      err.textContent = e.message; b.disabled = false; b.innerHTML = txt;
     }
   };
 
   if (new URLSearchParams(location.search).get("pago") === "ok") {
     id("s1").hidden = true; id("s3").hidden = false;
-    setTimeout(() => caja.scrollIntoView({ block: "center" }), 300);
+    setTimeout(() => $(".tarjeta-cal").scrollIntoView({ block: "center" }), 300);
   }
   render();
 })();
