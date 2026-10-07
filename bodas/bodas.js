@@ -37,6 +37,107 @@
     document.addEventListener("pointerout", e => { const t = e.target.closest("[data-ver]"); if (t && !t.contains(e.relatedTarget)) c.classList.remove("on"); });
   }
 
+  /* ---------- carrusel de historias ----------
+     Compu: flechas solo si hay más bodas de las que caben. Celular: la fila avanza sola muy despacio
+     hacia la derecha, en bucle (con copias de las tarjetas); si la tocan, se pausa unos segundos. */
+  const cel = matchMedia("(max-width: 900px)");
+  $$("[data-carrusel]").forEach(c => {
+    const pista = $(".tiras", c);
+    if (!pista) return;
+    const originales = [...pista.children];
+    const paso = () => (originales[0]?.offsetWidth || 300) + parseFloat(getComputedStyle(pista).columnGap || 16);
+    $(".ant", c)?.addEventListener("click", () => pista.scrollBy({ left: -paso(), behavior: "smooth" }));
+    $(".sig", c)?.addEventListener("click", () => pista.scrollBy({ left: paso(), behavior: "smooth" }));
+    const mide = () => c.classList.toggle("desborda", pista.scrollWidth > pista.clientWidth + 4);
+    addEventListener("resize", mide); mide();
+
+    if (quieto || originales.length < 2) return;
+    originales.forEach(t => {
+      const k = t.cloneNode(true);
+      k.classList.add("clon", "vis"); k.removeAttribute("data-r");
+      k.setAttribute("aria-hidden", "true"); k.tabIndex = -1;
+      pista.appendChild(k);
+    });
+    const vuelta = () => pista.children[originales.length].offsetLeft - originales[0].offsetLeft;
+    const VEL = 22;                                // px por segundo: lento, apenas se nota que camina
+    let x = 0, pausa = 0, antes = 0;
+    const espera = () => { pausa = Date.now() + 4000; };
+    ["touchstart", "pointerdown", "wheel"].forEach(ev => pista.addEventListener(ev, espera, { passive: true }));
+    pista.addEventListener("scroll", () => {
+      if (Date.now() > pausa) return;
+      x = pista.scrollLeft;                       // el usuario la movió: seguimos desde ahí
+      if (x >= vuelta()) { x -= vuelta(); pista.scrollLeft = x; }
+    }, { passive: true });
+    (function anda() {
+      const t = performance.now(), dt = antes ? Math.min(.1, (t - antes) / 1000) : 0; antes = t;
+      const r = pista.getBoundingClientRect();
+      if (cel.matches && r.bottom > 0 && r.top < innerHeight && Date.now() > pausa) {
+        x += VEL * dt;                              // según el tiempo real, aunque el celular vaya a pocos cuadros
+        if (x >= vuelta()) x -= vuelta();
+        pista.scrollLeft = x;
+      }
+      requestAnimationFrame(anda);
+    })();
+  });
+
+  /* ---------- línea beige que serpentea de foto en foto en la galería de cada historia ----------
+     Pasa por el centro de cada foto (queda detrás de ellas) y se va dibujando al bajar. */
+  const rev = $(".revista");
+  if (rev) {
+    const NS = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(NS, "svg"); svg.classList.add("serpentina"); svg.setAttribute("aria-hidden", "true");
+    const linea = document.createElementNS(NS, "path"), eco = document.createElementNS(NS, "path");
+    svg.append(linea, eco); rev.prepend(svg);
+    // Posición sin contar el transform de la animación de aparición
+    const sobre = (el) => { let x = 0, y = 0; while (el && el !== rev) { x += el.offsetLeft; y += el.offsetTop; el = el.offsetParent; } return [x, y]; };
+    const curva = (p) => {               // Catmull-Rom → Bézier: una curva suave que pasa por todos los puntos
+      let d = `M${p[0][0].toFixed(1)},${p[0][1].toFixed(1)}`;
+      for (let i = 0; i < p.length - 1; i++) {
+        const a = p[i - 1] || p[i], b = p[i], c = p[i + 1], e = p[i + 2] || c;
+        d += ` C${(b[0] + (c[0] - a[0]) / 6).toFixed(1)},${(b[1] + (c[1] - a[1]) / 6).toFixed(1)} ${(c[0] - (e[0] - b[0]) / 6).toFixed(1)},${(c[1] - (e[1] - b[1]) / 6).toFixed(1)} ${c[0].toFixed(1)},${c[1].toFixed(1)}`;
+      }
+      return d;
+    };
+    let largo = 0, largoEco = 0;
+    const traza = () => {
+      const bs = $$(".m button", rev);
+      if (!bs.length) return;
+      const pts = bs.map(b => { const [x, y] = sobre(b); return [x + b.offsetWidth / 2, y + b.offsetHeight / 2]; });
+      const w = rev.clientWidth;
+      pts.unshift([w * .08, pts[0][1] - 160]);                     // entra desde la izquierda, bajo el título
+      pts.push([w * .92, pts[pts.length - 1][1] + 140]);
+      // Entre cada par de fotos, un punto desplazado hacia un lado y luego hacia el otro: así ondula como serpentina
+      const ond = [];
+      pts.forEach((a, i) => {
+        ond.push(a);
+        const b = pts[i + 1]; if (!b) return;
+        const dx = b[0] - a[0], dy = b[1] - a[1], l = Math.hypot(dx, dy) || 1;
+        const amp = Math.min(l * .3, w * .3) * (i % 2 ? 1 : -1);
+        const mx = (a[0] + b[0]) / 2 - dy / l * amp, my = (a[1] + b[1]) / 2 + dx / l * amp;
+        ond.push([Math.min(w * .98, Math.max(w * .02, mx)), my]);
+      });
+      pts.splice(0, pts.length, ...ond);
+      svg.setAttribute("height", rev.scrollHeight); svg.setAttribute("viewBox", `0 0 ${w} ${rev.scrollHeight}`);
+      linea.setAttribute("d", curva(pts));
+      eco.setAttribute("d", curva(pts.map(([x, y], i) => [x + (i % 2 ? 22 : -22), y + 14])));   // segunda hebra, más tenue
+      largo = linea.getTotalLength(); largoEco = eco.getTotalLength();
+      [[linea, largo], [eco, largoEco]].forEach(([p, l]) => { p.style.strokeDasharray = l; });
+      dibuja();
+    };
+    const dibuja = () => {
+      const r = rev.getBoundingClientRect();
+      const avance = quieto ? 1 : Math.min(1, Math.max(0, (innerHeight * .85 - r.top) / r.height));
+      linea.style.strokeDashoffset = largo * (1 - avance);
+      eco.style.strokeDashoffset = largoEco * (1 - Math.min(1, avance * 1.02));
+    };
+    let pend = false;
+    addEventListener("scroll", () => { if (!pend) { pend = true; requestAnimationFrame(() => { pend = false; dibuja(); }); } }, { passive: true });
+    let t; addEventListener("resize", () => { clearTimeout(t); t = setTimeout(traza, 200); });
+    traza();
+    // Las letras del título pueden mover todo unos píxeles al cargar: se vuelve a trazar
+    document.fonts?.ready.then(traza); addEventListener("load", traza);
+  }
+
   /* ---------- frases que se van turnando ---------- */
   $$(".rot").forEach(f => {
     const ss = $$("span", f); let i = 0;

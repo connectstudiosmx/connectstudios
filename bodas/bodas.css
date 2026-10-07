@@ -138,9 +138,17 @@ a:hover .flecha,.btn:hover .flecha{transform:translateX(5px)}
 
 /* ---------- historias ---------- */
 .historias{padding:clamp(90px,12vw,170px) 0 clamp(100px,13vw,180px)}
-.tiras{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.2vw,32px);align-items:start}
-.tira{display:block;text-decoration:none;color:inherit}
-.tira:nth-child(3n+2){margin-top:clamp(50px,8vw,130px)}
+/* Carrusel: en compu caben 3 escalonadas (una arriba, una abajo); si hay más bodas, salen flechas.
+   En celular van en fila y avanzan solas muy despacio (bodas.js). */
+.tiras{--gap:clamp(16px,2.2vw,32px);display:flex;gap:var(--gap);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;align-items:flex-start;padding-bottom:6px}
+.tiras::-webkit-scrollbar{display:none}
+.tira{display:block;text-decoration:none;color:inherit;flex:0 0 calc((100% - 2 * var(--gap)) / 3);scroll-snap-align:start}
+.tira:nth-child(even){margin-top:clamp(50px,8vw,130px)}
+.tira.clon{display:none}
+.flechas{display:none;justify-content:flex-end;gap:12px;margin-top:clamp(26px,3vw,40px)}
+[data-carrusel].desborda .flechas{display:flex}
+.flechas button{width:52px;height:52px;border:1px solid currentColor;border-radius:50%;font-size:18px;line-height:1;opacity:.75;transition:opacity .3s,background .3s,color .3s}
+.flechas button:hover{opacity:1;background:var(--on-night);color:var(--night)}
 .tira .foto{position:relative;aspect-ratio:3/4.2;overflow:hidden;border-radius:3px;background:#222}
 .tira img{width:100%;height:100%;object-fit:cover;transition:transform 1.6s var(--ease)}
 .tira:hover img{transform:scale(1.07)}
@@ -151,11 +159,20 @@ a:hover .flecha,.btn:hover .flecha{transform:translateX(5px)}
 .paper .tira p{color:var(--mute)}
 .tira .ir{display:inline-block;margin-top:14px;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid currentColor;padding-bottom:3px}
 @media(max-width:900px){
-  .tiras{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin:0 calc(-1*var(--pad));padding:0 var(--pad) 8px;scrollbar-width:none;scroll-padding:0 var(--pad)}
-  .tiras::-webkit-scrollbar{display:none}
-  .tira{flex:0 0 76%;scroll-snap-align:start}
-  .tira:nth-child(3n+2){margin-top:0}
+  /* sin snap: el avance automático mueve la fila poco a poco y el snap lo regresaría */
+  .tiras{--gap:14px;scroll-snap-type:none;margin:0 calc(-1*var(--pad));padding:0 var(--pad) 8px}
+  .tira{flex:0 0 76%}
+  .tira:nth-child(even){margin-top:0}
+  .tira.clon{display:block}
+  [data-carrusel].desborda .flechas{display:none}
 }
+
+/* ---------- línea que serpentea entre las fotos de la galería ---------- */
+.revista{position:relative}
+.serpentina{position:absolute;left:0;top:0;width:100%;pointer-events:none;z-index:0;overflow:visible}
+.serpentina path{fill:none;stroke:#cdbb9c;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;opacity:.8}
+.serpentina path+path{stroke-width:.8;opacity:.45}
+.revista .m,.revista .cabecera{position:relative;z-index:1}
 
 /* ---------- collage que se mueve ---------- */
 .galeria-sec{padding:clamp(90px,12vw,170px) 0 0;overflow:hidden}
@@ -262,9 +279,11 @@ a:hover .flecha,.btn:hover .flecha{transform:translateX(5px)}
 .m button:hover img{transform:scale(1.035)}
 @media(max-width:700px){
   .revista{padding:60px 12px 20px}
-  .m{display:flex;flex-direction:column;gap:12px;margin-bottom:12px;aspect-ratio:auto!important}
+  .m{display:flex;flex-direction:column;gap:38px;margin-bottom:38px;aspect-ratio:auto!important}
   .m button{position:static;width:100%!important;height:auto!important}
-  .m button.v{width:84%!important}
+  .m button.v{width:78%!important}
+  .m button.h{width:92%!important}
+  .m button.h:nth-child(even){align-self:flex-end}
   .m button.v.der{align-self:flex-end}
   .m button.v img{aspect-ratio:2/3}
   .m button.h img{aspect-ratio:3/2}
