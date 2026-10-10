@@ -296,7 +296,12 @@
       });
       const d = await r.json();
       if (!r.ok || !d.url) throw new Error(d.error || "No se pudo abrir el pago. Intenten de nuevo.");
-      location.href = d.url;
+      // Medición (Meta y Google): se abrió el pago. Solo va el monto del anticipo, nunca los datos de la pareja.
+      // Se guarda para contar la reserva una sola vez al volver de Stripe.
+      const valor = Math.round(precio() * RESERVA / 500) * 500;
+      try { localStorage.setItem("cs.boda.pago", JSON.stringify({ valor, t: Date.now() })); } catch (x) { /* sin almacenamiento */ }
+      if (window.csMedir) window.csMedir("InitiateCheckout", "begin_checkout", { value: valor, currency: "MXN" });
+      setTimeout(() => { location.href = d.url; }, 400);   // deja salir el aviso antes de cambiar de página
     } catch (e) {
       err.textContent = e.message; b.disabled = false; b.innerHTML = txt;
     }
@@ -305,6 +310,15 @@
   if (new URLSearchParams(location.search).get("pago") === "ok") {
     id("s1").hidden = true; id("s3").hidden = false;
     setTimeout(() => $(".tarjeta-cal").scrollIntoView({ block: "center" }), 300);
+    // Medición: la reserva quedó pagada. Se cuenta una sola vez y solo si el pago se abrió desde este navegador.
+    try {
+      const p = JSON.parse(localStorage.getItem("cs.boda.pago") || "null");
+      if (p && Date.now() - p.t < 864e5) {
+        localStorage.removeItem("cs.boda.pago");
+        const medir = () => { if (window.csMedir) window.csMedir("Purchase", "purchase", { value: p.valor, currency: "MXN" }); };
+        if (document.readyState === "complete") medir(); else addEventListener("load", medir);
+      }
+    } catch (x) { /* sin almacenamiento */ }
   }
   render();
 })();

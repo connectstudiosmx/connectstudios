@@ -38,12 +38,15 @@
   /* Para el resto del sitio: csMedir("Contact", "generate_lead").
      El primero es el evento de Meta y el segundo el de Google.
      "Lead" NO se usa aqui: en el portal significa prospecto que
-     califico, y los anuncios optimizan con el. */
-  window.csMedir = function (meta, google) {
-    if (!real) { console.info("[medicion]", meta, google || ""); return; }
+     califico, y los anuncios optimizan con el.
+     El tercero es opcional: datos del evento, por ejemplo
+     { value: 5000, currency: "MXN" } al apartar una boda. Nunca datos
+     de la persona (nombre, correo, telefono). */
+  window.csMedir = function (meta, google, datos) {
+    if (!real) { console.info("[medicion]", meta, google || "", datos || ""); return; }
     try {
-      if (window.fbq && meta) fbq("track", meta);
-      if (window.gtag && google) gtag("event", google);
+      if (window.fbq && meta) fbq("track", meta, datos || {});
+      if (window.gtag && google) gtag("event", google, datos || {});
     } catch (e) { /* medir nunca rompe la pagina */ }
   };
 })();
