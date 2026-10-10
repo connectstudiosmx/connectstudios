@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Landing para anuncios de Meta (VSL). No se indexa ni va en el sitemap: la página que
+     compite en Google por este servicio es /contenido-para-redes-guadalajara/, y dos páginas
+     con lo mismo se estorban. Ninguna otra página enlaza aquí; se llega desde el anuncio. -->
+<meta name="robots" content="noindex, follow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Sistema Completo de Distribución de Marca Personal · Connect Studios</title>
+<meta name="description" content="Apareces en cámara 1 o 2 días al mes. Nosotros grabamos, editamos y distribuimos 12 videos que se convierten en 48 publicaciones en tus redes.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:site_name" content="Connect Studios">
+<meta property="og:title" content="Sistema Completo de Distribución de Marca Personal">
+<meta property="og:description" content="12 videos al mes que se convierten en 48 publicaciones en tus redes. Tú solo apareces en cámara.">
+<meta property="og:url" content="https://connectstudios.mx/sistema/">
+<meta property="og:image" content="https://connectstudios.mx/assets/img/og/contenido-redes.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#060505">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/icono/icono-32.png">
+<link rel="apple-touch-icon" href="/assets/img/icono/icono-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,100,400..600;1,100..125,800..900&family=Source+Serif+4:opsz,wght@8..60,300..600&display=swap">
+<style>
+:root{--bg:#060505;--bg2:#0d0c0b;--bg3:#161412;--cream:#f2efe9;--dim:#c9c5bd;--muted:#86817a;--acc:#39ff88;--acc2:rgba(57,255,136,.16);--line:rgba(242,239,233,.12);
+  --disp:"Archivo","Arial Black",Impact,sans-serif;--serif:"Source Serif 4",Georgia,serif;--pad:clamp(18px,5vw,64px);--ease:cubic-bezier(.16,1,.3,1)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--cream);font-family:"Archivo",system-ui,sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video,iframe{display:block;max-width:100%}img{height:auto}
+a{color:inherit}button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+[hidden]{display:none!important}
+::selection{background:var(--acc);color:#000}
+.w{max-width:1180px;margin:0 auto;padding:0 var(--pad)}
+.d{font-family:var(--disp);font-style:italic;font-weight:860;font-stretch:118%;text-transform:uppercase;line-height:.93;letter-spacing:-.012em}
+.v{color:var(--acc)}
+.ceja{display:inline-flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--dim)}
+.ceja::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 5px var(--acc2)}
+.serif{font-family:var(--serif);font-weight:400}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:19px 34px;border-radius:999px;background:var(--acc);color:#04130a;font-weight:700;font-size:15px;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;box-shadow:0 0 0 0 var(--acc2),0 18px 50px -18px rgba(57,255,136,.7);transition:transform .35s var(--ease),box-shadow .35s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 0 0 8px var(--acc2),0 22px 60px -16px rgba(57,255,136,.85)}
+.btn i{font-style:normal;transition:transform .35s var(--ease)}.btn:hover i{transform:translateX(5px)}
+.btn.ch{padding:12px 20px;font-size:12px;box-shadow:none}
+.nota{font-size:13px;color:var(--muted);margin-top:14px}
+section{position:relative}
+.sec{padding:clamp(80px,11vw,150px) 0}
+.h2{font-size:clamp(34px,4.5vw,66px)}
+.h2.ch{font-size:clamp(30px,5vw,68px)}
+.problema .w>*,.portal .cab>*,.quien .w>*,.precio>*,.suma>*{min-width:0}
+.lead{font-size:clamp(18px,1.6vw,21px);color:var(--dim);max-width:56ch;margin-top:22px}
+.js [data-r]{opacity:0;transform:translateY(34px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.js [data-r].vis{opacity:1;transform:none}
+.js [data-r="2"]{transition-delay:.12s}.js [data-r="3"]{transition-delay:.24s}.js [data-r="4"]{transition-delay:.36s}
+
+/* barra */
+.barra{position:fixed;inset:0 0 auto 0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:14px var(--pad);transition:background .4s,backdrop-filter .4s}
+.barra.s{background:rgba(6,5,5,.82);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
+.barra img{width:132px}
+
+/* portada */
+.hero{padding:clamp(96px,10vw,128px) 0 clamp(60px,8vw,100px);text-align:center;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-20% -10% auto;height:900px;background:radial-gradient(closest-side,rgba(57,255,136,.2),transparent 70%);pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(ellipse at 50% 20%,#000 10%,transparent 68%);mask-image:radial-gradient(ellipse at 50% 20%,#000 10%,transparent 68%);opacity:.5;pointer-events:none}
+.hero .w{position:relative;z-index:1}
+.hero h1{font-size:clamp(34px,5.1vw,74px);margin:20px auto 0;max-width:21ch}
+.hero .lead{margin:18px auto 0;max-width:58ch}
+.vsl{position:relative;display:block;width:100%;max-width:880px;margin:clamp(24px,3vw,36px) auto 0;aspect-ratio:16/9;border-radius:22px;overflow:hidden;background:#000;border:1px solid rgba(57,255,136,.35);box-shadow:0 0 0 8px rgba(57,255,136,.06),0 60px 140px -50px rgba(57,255,136,.55)}
+.vsl img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;opacity:.72;transition:transform 1.2s var(--ease),opacity .4s}
+.vsl:hover img{transform:scale(1.03);opacity:.85}
+.vsl iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vsl .play{position:absolute;top:50%;left:50%;width:clamp(74px,9vw,112px);aspect-ratio:1;translate:-50% -50%;border-radius:50%;background:var(--acc);display:grid;place-items:center;box-shadow:0 0 0 0 rgba(57,255,136,.5);animation:late 2.2s infinite}
+.vsl .play::before{content:"";border-left:clamp(20px,2.4vw,30px) solid #04130a;border-top:clamp(13px,1.5vw,19px) solid transparent;border-bottom:clamp(13px,1.5vw,19px) solid transparent;margin-left:8%}
+@keyframes late{70%{box-shadow:0 0 0 26px rgba(57,255,136,0)}100%{box-shadow:0 0 0 0 rgba(57,255,136,0)}}
+.vsl .et{position:absolute;left:18px;bottom:16px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;background:rgba(0,0,0,.6);padding:8px 14px;border-radius:999px;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.vsl.pronto{cursor:default}.vsl.pronto .play{display:none}
+.hero .acc{margin-top:clamp(30px,4vw,44px)}
+.datos{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 34px;margin-top:38px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.datos b{color:var(--cream);font-weight:600}
+
+/* cinta de redes */
+.cinta{border-block:1px solid var(--line);overflow:hidden;padding:20px 0;background:var(--bg2)}
+.cinta div{display:flex;gap:56px;width:max-content;animation:corre 30s linear infinite;font-family:var(--disp);font-style:italic;font-weight:860;font-stretch:118%;text-transform:uppercase;font-size:clamp(22px,3vw,38px);color:rgba(242,239,233,.28)}
+.cinta span:nth-child(odd){color:var(--cream)}
+@keyframes corre{to{transform:translateX(-50%)}}
+
+/* problema */
+.problema .w{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(34px,6vw,90px);align-items:center}
+.tareas{list-style:none;border:1px solid var(--line);border-radius:22px;background:var(--bg2);padding:clamp(22px,3vw,36px)}
+.tareas li{display:flex;justify-content:space-between;gap:16px;padding:15px 0;border-bottom:1px dashed var(--line);font-size:17px}
+.tareas li span:first-child{text-decoration:line-through;text-decoration-color:rgba(255,90,90,.75);text-decoration-thickness:2px;color:var(--dim)}
+.tareas li span:last-child{color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.tareas .tot{border:0;padding-top:22px;align-items:baseline}
+.tareas .tot span:first-child{text-decoration:none;color:var(--cream);font-weight:600}
+.tareas .tot span:last-child{font-family:var(--disp);font-style:italic;font-weight:860;font-size:38px;color:#ff6b6b}
+.tareas li.con{flex-direction:column;align-items:flex-start;gap:2px;margin-top:18px;border-bottom:0;border:1px solid rgba(57,255,136,.4);background:var(--acc2);border-radius:14px;padding:16px 18px;display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+.tareas li.con span:first-child{text-decoration:none;color:var(--cream)}
+.tareas .con b{font-family:var(--disp);font-style:italic;font-weight:860;font-size:clamp(24px,3vw,34px);color:var(--acc);white-space:nowrap}
+
+/* la cuenta 12 × 4 = 48 */
+.cuenta{background:var(--bg2);border-block:1px solid var(--line);text-align:center}
+.suma{display:flex;justify-content:center;align-items:flex-end;flex-wrap:wrap;gap:clamp(10px,3vw,40px);margin-top:clamp(40px,6vw,70px)}
+.suma>div{min-width:0}
+.suma .n{font-family:var(--disp);font-style:italic;font-weight:900;font-stretch:122%;font-size:clamp(84px,17vw,250px);line-height:.8;letter-spacing:-.03em}
+.suma .op{font-family:var(--serif);font-size:clamp(40px,7vw,96px);color:var(--muted);line-height:1;padding-bottom:.25em}
+.suma small{display:block;margin-top:16px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.suma .tot .n{color:var(--acc);text-shadow:0 0 90px rgba(57,255,136,.45)}
+.pasos{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:clamp(56px,8vw,100px);text-align:left;counter-reset:p}
+.paso{border:1px solid var(--line);border-radius:20px;padding:28px 24px 30px;background:var(--bg);position:relative;overflow:hidden;transition:border-color .4s,transform .5s var(--ease)}
+.paso:hover{border-color:rgba(57,255,136,.5);transform:translateY(-6px)}
+.paso::before{counter-increment:p;content:"0" counter(p);font-family:var(--disp);font-style:italic;font-weight:900;font-size:64px;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(57,255,136,.6)}
+.paso h3{font-size:19px;font-weight:600;margin:18px 0 8px}
+.paso p{font-size:15.5px;color:var(--dim)}
+.paso em{display:inline-block;margin-top:14px;font-style:normal;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+
+/* portal */
+.portal .cab{max-width:900px}
+.win{margin-top:clamp(40px,5vw,64px);border:1px solid var(--line);border-radius:22px;background:var(--bg2);overflow:hidden;box-shadow:0 70px 140px -70px rgba(57,255,136,.4)}
+.win .top{display:flex;align-items:center;gap:8px;padding:14px 18px;border-bottom:1px solid var(--line);background:var(--bg3)}
+.win .top i{width:11px;height:11px;border-radius:50%;background:#3a3633}
+.win .top span{margin-left:14px;font-size:12.5px;color:var(--muted);letter-spacing:.04em}
+.win .cuerpo{display:grid;grid-template-columns:220px 1fr;min-height:430px}
+.tabs{display:flex;flex-direction:column;gap:4px;padding:18px 12px;border-right:1px solid var(--line)}
+.tabs button{display:flex;align-items:center;gap:12px;text-align:left;padding:13px 14px;border-radius:12px;font-size:15px;color:var(--dim);transition:background .3s,color .3s}
+.tabs button::before{content:"";width:7px;height:7px;border-radius:50%;background:#3a3633;transition:background .3s,box-shadow .3s}
+.tabs button.on{background:var(--acc2);color:var(--cream)}
+.tabs button.on::before{background:var(--acc);box-shadow:0 0 0 4px var(--acc2)}
+.panel{padding:clamp(20px,3vw,34px);animation:entra .5s var(--ease)}
+@keyframes entra{from{opacity:0;transform:translateY(12px)}}
+.panel h4{font-size:21px;font-weight:600}
+.panel>p{font-size:15px;color:var(--muted);margin-top:4px}
+.fila{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:15px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+.chip{flex:none;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;padding:6px 11px;border-radius:999px;border:1px solid var(--line);color:var(--dim)}
+.chip.ok{border-color:rgba(57,255,136,.5);color:var(--acc);background:var(--acc2)}
+.chip.av{border-color:rgba(255,200,90,.5);color:#ffcf6b}
+.vids{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px;max-width:560px}
+.vid{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg)}
+.vid img{width:100%;aspect-ratio:9/13;object-fit:cover}
+.vid div{padding:10px 10px 12px;font-size:12.5px;color:var(--dim)}
+.vid b{display:block;color:var(--cream);font-weight:600;font-size:13.5px}
+.vid .chip{display:inline-block;margin-top:8px}
+.mes{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:20px;max-width:520px}
+.mes b{font-size:11px;letter-spacing:.14em;color:var(--muted);text-align:center;font-weight:500;padding-bottom:4px}
+.mes span{aspect-ratio:1;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;font-size:13px;color:var(--muted)}
+.mes span.p{background:var(--acc2);border-color:rgba(57,255,136,.5);color:var(--acc);font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.kpi{border:1px solid var(--line);border-radius:14px;padding:16px}
+.kpi small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.kpi b{display:block;font-family:var(--disp);font-style:italic;font-weight:860;font-size:clamp(26px,3vw,38px);line-height:1.1;margin-top:6px}
+.barras{display:flex;align-items:flex-end;gap:8px;height:110px;margin-top:22px}
+.barras i{flex:1;border-radius:6px 6px 0 0;background:linear-gradient(var(--acc),rgba(57,255,136,.25));height:var(--h)}
+.ilus{font-size:12px;color:var(--muted);text-align:center;margin-top:14px}
+
+/* incluye */
+.grid6{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:22px;overflow:hidden;margin-top:clamp(40px,5vw,64px)}
+.grid6 div{background:var(--bg);padding:clamp(24px,3vw,36px)}
+.grid6 b{font-family:var(--serif);font-style:italic;font-weight:400;font-size:22px;color:var(--acc)}
+.grid6 h3{font-size:19px;font-weight:600;margin:12px 0 6px}
+.grid6 p{font-size:15.5px;color:var(--dim)}
+
+/* prueba */
+.prueba{background:var(--bg2);border-block:1px solid var(--line)}
+.testis{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:clamp(40px,5vw,64px)}
+.testi{border:1px solid var(--line);border-radius:22px;padding:clamp(26px,3.4vw,44px);background:var(--bg)}
+.testi blockquote{font-family:var(--serif);font-size:clamp(20px,2vw,26px);line-height:1.4}
+.testi figcaption{display:flex;align-items:center;gap:14px;margin-top:26px;font-size:14.5px;color:var(--dim)}
+.testi figcaption img{width:52px;height:52px;border-radius:50%;object-fit:cover}
+.testi figcaption b{display:block;color:var(--cream);font-weight:600}
+.logos{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:26px clamp(26px,4.4vw,60px);margin-top:clamp(44px,6vw,70px)}
+.logos img{height:34px;width:auto;opacity:.55;filter:grayscale(1) brightness(1.7);transition:opacity .3s}
+.logos img:hover{opacity:1}
+
+/* para quién */
+.dos{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:clamp(40px,5vw,64px)}
+.caja{border:1px solid var(--line);border-radius:22px;padding:clamp(26px,3.4vw,42px)}
+.caja.si{border-color:rgba(57,255,136,.45);background:linear-gradient(180deg,var(--acc2),transparent 70%)}
+.caja h3{font-size:14px;letter-spacing:.18em;text-transform:uppercase;font-weight:600}
+.caja ul{list-style:none;margin-top:18px}
+.caja li{position:relative;padding:13px 0 13px 34px;border-top:1px solid var(--line)}
+.caja li::before{position:absolute;left:0;top:12px;font-weight:700}
+.caja.si li::before{content:"✓";color:var(--acc)}
+.caja.no li::before{content:"✕";color:#ff6b6b}
+.caja.no{color:var(--dim)}
+
+/* quién */
+.quien .w{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,6vw,90px);align-items:center}
+.quien img{border-radius:22px;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%}
+.quien .lead+.lead{margin-top:16px}
+
+/* precio */
+.precio{border:1px solid rgba(57,255,136,.4);border-radius:28px;padding:clamp(30px,5vw,64px);background:radial-gradient(120% 140% at 0% 0%,var(--acc2),transparent 55%),var(--bg2);display:grid;grid-template-columns:1fr 1fr;gap:clamp(26px,5vw,70px);align-items:center}
+.precio .monto{font-family:var(--disp);font-style:italic;font-weight:900;font-stretch:118%;font-size:clamp(54px,8vw,110px);line-height:.9}
+.precio .monto small{display:block;font-family:"Archivo",sans-serif;font-style:normal;font-weight:500;font-stretch:100%;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-top:14px}
+.precio ul{list-style:none}
+.precio li{padding:12px 0 12px 30px;border-top:1px solid var(--line);position:relative;font-size:16px;color:var(--dim)}
+.precio li::before{content:"✓";position:absolute;left:0;color:var(--acc);font-weight:700}
+.precio li b{color:var(--cream);font-weight:600}
+.precio .btn{margin-top:26px}
+
+/* preguntas */
+.faq{max-width:860px;margin:clamp(36px,5vw,56px) auto 0}
+.faq details{border-top:1px solid var(--line)}.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;font-size:clamp(18px,1.8vw,22px);font-weight:500}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";flex:none;width:34px;height:34px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;font-size:20px;color:var(--acc);transition:transform .35s var(--ease)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{color:var(--dim);padding:0 50px 24px 0}
+
+/* cierre y pie */
+.final{text-align:center;padding:clamp(100px,14vw,190px) 0;overflow:hidden}
+.final::before{content:"";position:absolute;inset:auto -10% -55% -10%;height:120%;background:radial-gradient(closest-side,rgba(57,255,136,.26),transparent 70%);pointer-events:none}
+.final .w{position:relative}
+.final h2{font-size:clamp(44px,8.6vw,124px);max-width:12ch;margin:22px auto 0}
+.final .lead{margin:24px auto 36px}
+.pie{border-top:1px solid var(--line);padding:30px 0 110px;font-size:13px;color:var(--muted)}
+.pie .w{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px}
+.pie a{text-decoration:none;margin-left:18px}.pie a:hover{color:var(--cream)}
+
+/* botón pegado abajo en celular */
+.pegado{position:fixed;left:12px;right:12px;bottom:12px;z-index:25;display:none;transform:translateY(140%);transition:transform .5s var(--ease)}
+.pegado.on{transform:none}
+.pegado .btn{width:100%;padding:17px 20px;font-size:14px}
+
+@media(max-width:900px){
+  .problema .w,.portal .cab,.quien .w,.precio,.testis,.dos{grid-template-columns:1fr}
+  .pasos{grid-template-columns:1fr 1fr}
+  .grid6{grid-template-columns:1fr 1fr}
+  .win .cuerpo{grid-template-columns:1fr;min-height:0}
+  .tabs{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:10px;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tabs button{flex:none;padding:10px 14px;font-size:14px}
+  .quien img{width:100%;max-width:min(420px,100%)}
+  .pegado{display:block}
+  .barra .btn{display:none}
+}
+@media(max-width:560px){
+  .h2,.h2.ch{font-size:8vw}
+  .hero h1{font-size:9.6vw}
+  .pasos,.grid6{grid-template-columns:1fr}
+  .vsl{border-radius:16px}
+  .vids{grid-template-columns:repeat(3,1fr);gap:8px}
+  .kpis{grid-template-columns:1fr 1fr}.kpi:last-child{grid-column:1/-1}
+  .faq p{padding-right:0}
+  .suma .op{padding-bottom:.1em}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.cinta div,.vsl .play{animation:none}.js [data-r]{opacity:1;transform:none;transition:none}}
+</style>
+<!-- Las apariciones solo se activan con JS; si el script no llega, todo se ve normal -->
+<script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.__SIS)document.documentElement.classList.remove("js")},5000)</script>
+<!-- Google Analytics y Pixel de Meta: ver /medicion.js -->
+<script defer src="/medicion.js?v=20261004"></script>
+</head>
+<body>
+
+<header class="barra" id="barra">
+  <img src="/assets/img/logo-connect.webp" width="640" height="180" alt="Connect Studios">
+  <a class="btn ch" data-cta="barra" href="https://portal.connectstudios.mx/solicitud/?utm_source=connectstudios.mx&utm_medium=landing&utm_campaign=sistema-vsl">Agendar llamada <i>→</i></a>
+</header>
+
+<main>
+<!-- ============ PORTADA + VIDEO ============ -->
+<section class="hero">
+  <div class="w">
+    <p class="ceja">Sistema Completo de Distribución de Marca Personal</p>
+    <h1 class="d">Presencia en <span class="v">4 redes.</span> Sin editar ni publicar tú.</h1>
+    <p class="lead">¿Necesitas estar en redes para vender más, pero no tienes 20 horas a la semana? Mira este video de 3 minutos.</p>
+
+    <!-- VIDEO: pon aquí el ID del video de YouTube (lo que va después de "v=" en su link).
+         Mientras esté vacío se ve la foto con el aviso "Video en camino" y no se puede dar play. -->
+    <button type="button" class="vsl" id="vsl" data-video="" aria-label="Ver el video">
+      <img src="/assets/img/bts/bts-2.webp" width="1400" height="2100" alt="Manuel Pérez preparando la cámara en una grabación" fetchpriority="high">
+      <span class="play"></span>
+      <span class="et" id="vsl-et">▶ Míralo antes de agendar · 3 min</span>
+    </button>
+
+    <div class="acc">
+      <a class="btn" data-cta="portada" href="https://portal.connectstudios.mx/solicitud/?utm_source=connectstudios.mx&utm_medium=landing&utm_campaign=sistema-vsl">Agendar mi llamada de evaluación <i>→</i></a>
+      <p class="nota">Tú apareces en cámara 1 o 2 días al mes. Nosotros hacemos el resto.</p>
+    </div>
+    <div class="datos"><span><b>5 años</b> produciendo</span><span><b>100+</b> proyectos</span><span><b>250+</b> videos</span><span><b>Guadalajara</b>, México</span></div>
+  </div>
+</section>
+
+<div class="cinta" aria-hidden="true"><div><span>Instagram</span><span>TikTok</span><span>YouTube</span><span>LinkedIn</span><span>Facebook</span><span>Instagram</span><span>TikTok</span><span>YouTube</span><span>LinkedIn</span><span>Facebook</span><span>Instagram</span><span>TikTok</span><span>YouTube</span><span>LinkedIn</span><span>Facebook</span><span>Instagram</span><span>TikTok</span><span>YouTube</span><span>LinkedIn</span><span>Facebook</span></div></div>
+
+<!-- ============ EL PROBLEMA ============ -->
+<section class="sec problema">
+  <div class="w">
+    <div data-r>
+      <p class="ceja">El gran problema</p>
+      <h2 class="d h2" style="margin-top:20px">Tu negocio te necesita. <span class="v">Las redes también.</span></h2>
+      <p class="lead">Grabar, editar, escribir los textos, diseñar portadas y publicar en cuatro plataformas distintas es un trabajo de tiempo completo. Y tú ya tienes uno.</p>
+      <p class="lead">Por eso la mayoría publica dos semanas y lo deja. No es falta de ganas: es que así, sin un sistema, no se sostiene.</p>
+    </div>
+    <ul class="tareas" data-r="2">
+      <li><span>Pensar qué publicar</span><span>2 h</span></li>
+      <li><span>Grabar</span><span>5 h</span></li>
+      <li><span>Editar cada video</span><span>8 h</span></li>
+      <li><span>Textos y portadas</span><span>3 h</span></li>
+      <li><span>Publicar en 4 plataformas</span><span>2 h</span></li>
+      <li class="tot"><span>Hacerlo tú, cada semana</span><span>20 h</span></li>
+      <li class="con"><span>Con el sistema, tú apareces en cámara</span><b>1 o 2 días al mes</b></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ EL SISTEMA ============ -->
+<section class="sec cuenta" id="sistema">
+  <div class="w">
+    <p class="ceja" data-r>La solución</p>
+    <h2 class="d h2" style="margin:20px auto 0;max-width:16ch" data-r>No son videos sueltos. <span class="v">Es un sistema.</span></h2>
+    <p class="lead" style="margin-left:auto;margin-right:auto" data-r="2">Cada mes producimos 12 videos estratégicos y los distribuimos en hasta 4 redes. Un día de cámara tuyo se convierte en un mes entero de presencia.</p>
+    <div class="suma" data-r="2">
+      <div><span class="n" data-n="12">12</span><small>videos al mes</small></div>
+      <span class="op">×</span>
+      <div><span class="n" data-n="4">4</span><small>redes</small></div>
+      <span class="op">=</span>
+      <div class="tot"><span class="n" data-n="48">48</span><small>publicaciones al mes</small></div>
+    </div>
+    <div class="pasos">
+      <div class="paso" data-r><h3>Guiones</h3><p>Tú decides los temas y los escribes, porque nadie conoce tu negocio como tú. Te damos la guía y la herramienta, y los revisamos contigo antes de grabar.</p><em>Tú + nosotros</em></div>
+      <div class="paso" data-r="2"><h3>Grabación</h3><p>Vamos a tu negocio y grabamos el mes completo en uno o dos días. Si te cuesta la cámara, buscamos la forma en que te sientas cómodo.</p><em>1 o 2 días al mes</em></div>
+      <div class="paso" data-r="3"><h3>Edición</h3><p>12 videos verticales, cada uno con su texto de publicación y su portada. Los revisas en tu portal y pides ajustes si hace falta.</p><em>Nosotros</em></div>
+      <div class="paso" data-r="4"><h3>Distribución</h3><p>Programamos cada video aprobado lunes, miércoles y viernes en las redes que elijas. Las cuentas siguen siendo tuyas.</p><em>Nosotros</em></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EL PORTAL ============ -->
+<section class="sec portal">
+  <div class="w">
+    <div class="cab">
+      <div data-r><p class="ceja">El portal en acción</p><h2 class="d h2" style="margin-top:20px">Todo en un lugar. <span class="v">Cero incertidumbre.</span></h2></div>
+      <p class="lead" data-r="2">Cada cliente tiene su portal. Ahí subes tus guiones, revisas tus videos, ves tu calendario de publicación y mides resultados, sin cadenas infinitas de WhatsApp.</p>
+    </div>
+    <div class="win" data-r>
+      <div class="top"><i></i><i></i><i></i><span>portal.connectstudios.mx</span></div>
+      <div class="cuerpo">
+        <div class="tabs" role="tablist" id="tabs">
+          <button class="on" role="tab" data-p="p1">Guiones</button>
+          <button role="tab" data-p="p2">Videos</button>
+          <button role="tab" data-p="p3">Calendario</button>
+          <button role="tab" data-p="p4">Resultados</button>
+        </div>
+        <div>
+          <div class="panel" id="p1">
+            <h4>Guiones de octubre</h4><p>Los subes a más tardar 3 días antes de grabar. Nosotros los revisamos.</p>
+            <div class="fila" style="margin-top:14px"><span>3 errores al contratar tu seguro</span><span class="chip ok">Revisado</span></div>
+            <div class="fila"><span>Lo que nadie te dice de tu deducible</span><span class="chip ok">Revisado</span></div>
+            <div class="fila"><span>Mi historia: por qué empecé</span><span class="chip av">Con sugerencias</span></div>
+            <div class="fila"><span>¿Conviene un seguro de gastos médicos?</span><span class="chip">Por escribir</span></div>
+          </div>
+          <div class="panel" id="p2" hidden>
+            <h4>Videos por revisar</h4><p>Apruebas o pides ajustes. Tienes 3 días hábiles.</p>
+            <div class="vids">
+              <div class="vid"><img src="/assets/img/dorma-celulas-poster.webp" width="720" height="1280" alt="" loading="lazy"><div><b>Video 04</b>Alcance<br><span class="chip ok">Aprobado</span></div></div>
+              <div class="vid"><img src="/assets/img/dorma-vender-poster.webp" width="540" height="960" alt="" loading="lazy"><div><b>Video 05</b>Nutrir<br><span class="chip av">Por revisar</span></div></div>
+              <div class="vid"><img src="/assets/img/dorma-pvc-poster.webp" width="540" height="960" alt="" loading="lazy"><div><b>Video 06</b>Historia<br><span class="chip">En edición</span></div></div>
+            </div>
+          </div>
+          <div class="panel" id="p3" hidden>
+            <h4>Calendario de publicación</h4><p>Lunes, miércoles y viernes. Sabes qué sale y cuándo.</p>
+            <div class="mes"><b>L</b><b>M</b><b>M</b><b>J</b><b>V</b><b>S</b><b>D</b>
+              <span class="p">5</span><span>6</span><span class="p">7</span><span>8</span><span class="p">9</span><span>10</span><span>11</span>
+              <span class="p">12</span><span>13</span><span class="p">14</span><span>15</span><span class="p">16</span><span>17</span><span>18</span>
+              <span class="p">19</span><span>20</span><span class="p">21</span><span>22</span><span class="p">23</span><span>24</span><span>25</span>
+              <span class="p">26</span><span>27</span><span class="p">28</span><span>29</span><span class="p">30</span><span>31</span><span></span></div>
+          </div>
+          <div class="panel" id="p4" hidden>
+            <h4>Resultados del mes</h4><p>Un reporte claro para decidir los temas del mes siguiente.</p>
+            <div class="kpis"><div class="kpi"><small>Reproducciones</small><b>48,210</b></div><div class="kpi"><small>Cuentas alcanzadas</small><b>31,870</b></div><div class="kpi"><small>Mejor video</small><b>Video 04</b></div></div>
+            <div class="barras"><i style="--h:35%"></i><i style="--h:48%"></i><i style="--h:42%"></i><i style="--h:66%"></i><i style="--h:58%"></i><i style="--h:74%"></i><i style="--h:62%"></i><i style="--h:88%"></i><i style="--h:79%"></i><i style="--h:100%"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="ilus">Vista ilustrativa del portal, con datos de ejemplo.</p>
+  </div>
+</section>
+
+<!-- ============ QUÉ INCLUYE ============ -->
+<section class="sec" style="padding-top:0">
+  <div class="w">
+    <p class="ceja" data-r>Cada mes</p>
+    <h2 class="d h2" style="margin-top:20px" data-r>Todo lo que hace falta <span class="v">para publicar.</span></h2>
+    <div class="grid6" data-r>
+      <div><b>01</b><h3>12 videos verticales</h3><p>Editados para Instagram, TikTok, YouTube, LinkedIn o Facebook, con música con licencia o libre de derechos.</p></div>
+      <div><b>02</b><h3>Guiones acompañados</h3><p>Tú decides los temas y los escribes; te damos la guía y la herramienta, y revisamos cada uno.</p></div>
+      <div><b>03</b><h3>2 días de grabación</h3><p>En tu negocio, dentro de la Zona Metropolitana de Guadalajara.</p></div>
+      <div><b>04</b><h3>Texto y portada</h3><p>Cada video sale con su texto de publicación y su portada.</p></div>
+      <div><b>05</b><h3>Publicación programada</h3><p>Lunes, miércoles y viernes, en hasta 4 redes. Las cuentas siguen siendo tuyas.</p></div>
+      <div><b>06</b><h3>Sesión de estrategia</h3><p>Una hora al mes para revisar resultados y decidir los temas del siguiente.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRUEBA ============ -->
+<section class="sec prueba">
+  <div class="w">
+    <p class="ceja" data-r>Lo dicen ellos</p>
+    <h2 class="d h2" style="margin-top:20px" data-r>Clientes que ya <span class="v">lo viven.</span></h2>
+    <div class="testis">
+      <figure class="testi" data-r>
+        <blockquote>«Había trabajado con muchos videógrafos… llegaban, grababan y hacían lo que tú les pedías. Pero acá con Manuel me pasó diferente: se involucró completamente en el desarrollo del guion, en la manera de grabar los videos, en los efectos…»</blockquote>
+        <figcaption><img src="/assets/img/testimonios/edgar.webp" width="560" height="560" alt="" loading="lazy"><span><b>Edgar Temores</b>Dueño, Dorma</span></figcaption>
+      </figure>
+      <figure class="testi" data-r="2">
+        <blockquote>«Yo soy una persona a la que le ha costado mucho trabajo el grabar, el memorizar, entonces buscaste las alternativas en las cuales me sentí muy cómoda.»</blockquote>
+        <figcaption><img src="/assets/img/testimonios/griselda.webp" width="560" height="560" alt="" loading="lazy"><span><b>Griselda</b>Asesora de ventas, Seguros Monterrey</span></figcaption>
+      </figure>
+    </div>
+    <div class="logos" data-r>
+      <img src="/assets/img/clientes/dorma.webp" alt="Dorma" loading="lazy"><img src="/assets/img/clientes/seguros-monterrey.webp" alt="Seguros Monterrey" loading="lazy"><img src="/assets/img/clientes/finvivir.webp" alt="Finvivir" loading="lazy"><img src="/assets/img/clientes/tequila-carrera.webp" alt="Tequila Carrera" loading="lazy"><img src="/assets/img/clientes/cabb-arrenda.webp" alt="CABB Arrenda" loading="lazy"><img src="/assets/img/clientes/activate-my-skin.webp" alt="Activate My Skin" loading="lazy"><img src="/assets/img/clientes/eture-lab.webp" alt="Eture Lab" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARA QUIÉN ============ -->
+<section class="sec">
+  <div class="w">
+    <p class="ceja" data-r>Antes de agendar</p>
+    <h2 class="d h2" style="margin-top:20px" data-r>¿Es para ti? <span class="v">Seamos claros.</span></h2>
+    <div class="dos">
+      <div class="caja si" data-r><h3>Sí es para ti si…</h3><ul>
+        <li>Tienes un negocio que ya funciona, con clientes reales.</li>
+        <li>Eres dueño, profesional o asesor y vendes confianza: seguros, salud, servicios, bienes raíces.</li>
+        <li>Quieres que te conozcan por lo que sabes, con constancia.</li>
+        <li>Puedes dedicar uno o dos días al mes a grabar.</li>
+      </ul></div>
+      <div class="caja no" data-r="2"><h3>No es para ti si…</h3><ul>
+        <li>Buscas un video suelto para una sola ocasión.</li>
+        <li>Esperas que te garanticen seguidores o ventas: nadie controla los algoritmos.</li>
+        <li>No quieres aparecer en cámara ni participar en tus guiones.</li>
+        <li>Tu negocio aún no tiene clientes ni una oferta clara.</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUIÉN ============ -->
+<section class="sec quien" style="padding-top:0">
+  <div class="w">
+    <img src="/assets/img/manuel.webp" width="1200" height="1800" alt="Manuel Pérez, director de Connect Studios" loading="lazy" data-r>
+    <div data-r="2">
+      <p class="ceja">Quién está detrás</p>
+      <h2 class="d h2 ch" style="margin-top:20px">Manuel Pérez, <span class="v">Connect Studios.</span></h2>
+      <p class="lead">Llevo 5 años produciendo video para negocios en Guadalajara: más de 100 proyectos y más de 250 videos.</p>
+      <p class="lead">No llego, grabo y me voy. Me involucro en qué se dice, por qué y qué tiene que lograr cada video. Por eso armé un sistema, y no una lista de videos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INVERSIÓN ============ -->
+<section class="sec" style="padding-top:0">
+  <div class="w">
+    <div class="precio" data-r>
+      <div>
+        <p class="ceja">Inversión</p>
+        <p class="monto" style="margin-top:22px">$14,499<small>MXN al mes, más IVA · desde · 12 videos</small></p>
+        <a class="btn" data-cta="precio" href="https://portal.connectstudios.mx/solicitud/?utm_source=connectstudios.mx&utm_medium=landing&utm_campaign=sistema-vsl">Agendar llamada <i>→</i></a>
+      </div>
+      <ul>
+        <li><b>Primer mes sin riesgo.</b> Si después de tu primera entrega decides no seguir, solo pagas el resto de ese mes.</li>
+        <li><b>Pagas lo que se entrega.</b> Si no se entregan los 12 videos por causa nuestra, el cobro se ajusta proporcionalmente.</li>
+        <li><b>Arrancas con el 50%</b> del primer mes. Plazo mínimo de 3 meses; cada pago con factura.</li>
+        <li>El precio final depende de locaciones, equipo y alcance. Lo vemos en la llamada.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PREGUNTAS ============ -->
+<section class="sec" style="padding-top:0">
+  <div class="w">
+    <h2 class="d h2" style="text-align:center" data-r>Lo que más <span class="v">nos preguntan.</span></h2>
+    <div class="faq" data-r>
+      <details><summary>¿Quién escribe los guiones?</summary><p>Tú decides los temas y escribes los guiones, porque nadie conoce tu negocio como tú. En el arranque te enseñamos a escribirlos con una guía y una herramienta de apoyo, los revisamos antes de grabar y el día de grabación los afinamos juntos.</p></details>
+      <details><summary>¿Cuánto tiempo me va a tomar?</summary><p>Uno o dos días de grabación al mes, el tiempo de escribir tus guiones y una hora de sesión de estrategia. De la edición, los textos, las portadas y la publicación nos encargamos nosotros.</p></details>
+      <details><summary>¿En qué redes publican?</summary><p>En las que elijas, hasta 4: Instagram, TikTok, YouTube, LinkedIn o Facebook. Programamos cada video aprobado lunes, miércoles y viernes. Las cuentas siguen siendo tuyas.</p></details>
+      <details><summary>¿Qué pasa si un video no me convence?</summary><p>Lo revisas en tu portal y tienes 3 días hábiles para pedir ajustes antes de que se publique.</p></details>
+      <details><summary>¿Cuánto dura el contrato?</summary><p>El plazo mínimo es de 3 meses (también hay de 9 y 12). Si después de tu primera entrega decides no seguir, avisas dentro de 5 días y solo pagas el resto de ese primer mes.</p></details>
+      <details><summary>¿Garantizan seguidores o ventas?</summary><p>No. Nadie controla los algoritmos de las redes. Lo que sí hacemos: cada mes revisamos los resultados contigo y ajustamos los temas del siguiente.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CIERRE ============ -->
+<section class="final" id="agendar">
+  <div class="w">
+    <p class="ceja" data-r>La llamada de estrategia</p>
+    <h2 class="d" data-r>¿Lo instalamos en tu negocio <span class="v">este mes?</span></h2>
+    <p class="lead" data-r="2">Agenda una llamada de evaluación. Analizamos tu marca personal y vemos si encajas con el sistema. Si no es para ti, te lo decimos.</p>
+    <a class="btn" data-cta="cierre" data-r="2" href="https://portal.connectstudios.mx/solicitud/?utm_source=connectstudios.mx&utm_medium=landing&utm_campaign=sistema-vsl">Agendar mi llamada de evaluación <i>→</i></a>
+  </div>
+</section>
+</main>
+
+<footer class="pie"><div class="w"><span>© 2026 Connect Studios · Guadalajara, Jalisco</span><span><a href="/terminos/">Términos del servicio</a><a href="https://portal.connectstudios.mx/privacidad.html">Aviso de privacidad</a></span></div></footer>
+
+<div class="pegado" id="pegado"><a class="btn" data-cta="pegado" href="https://portal.connectstudios.mx/solicitud/?utm_source=connectstudios.mx&utm_medium=landing&utm_campaign=sistema-vsl">Agendar mi llamada <i>→</i></a></div>
+
+<script>
+(function () {
+  window.__SIS = true;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
+  var quieto = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- medición: se manda solo si /medicion.js ya cargó el Pixel y GA4 ---------- */
+  function medir(meta, ga, datos) {
+    try {
+      if (window.fbq && meta) fbq(meta.estandar ? "track" : "trackCustom", meta.nombre, datos || {});
+      if (window.gtag && ga) gtag("event", ga, datos || {});
+    } catch (e) { /* medir nunca debe romper la página */ }
+  }
+  addEventListener("load", function () {
+    setTimeout(function () { medir({ estandar: true, nombre: "ViewContent" }, "view_item", { content_name: "Sistema Completo de Distribución de Marca Personal", content_category: "landing-vsl" }); }, 800);
+  });
+
+  /* ---------- botones: llevan a la solicitud con el origen del anuncio (utm, fbclid) ---------- */
+  var entra = new URLSearchParams(location.search);
+  $$("[data-cta]").forEach(function (a) {
+    var u = new URL(a.href);
+    ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "fbclid", "gclid", "ref"].forEach(function (k) {
+      if (entra.get(k)) u.searchParams.set(k, entra.get(k));
+    });
+    if (!u.searchParams.get("utm_content")) u.searchParams.set("utm_content", "boton-" + a.dataset.cta);
+    a.href = u.toString();
+    a.addEventListener("click", function () { medir({ nombre: "ClicAgendar" }, "cta_agendar", { boton: a.dataset.cta }); });
+  });
+
+  /* ---------- video: YouTube se carga hasta dar play ---------- */
+  var vsl = $("#vsl"), id = (vsl.dataset.video || "").trim();
+  if (!id) { vsl.classList.add("pronto"); vsl.disabled = true; $("#vsl-et").textContent = "Video en camino"; }
+  else {
+    $("img", vsl).src = "https://i.ytimg.com/vi/" + id + "/maxresdefault.jpg";
+    $("img", vsl).style.objectPosition = "50% 50%";
+    vsl.addEventListener("click", function () {
+      vsl.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1" title="Sistema Completo de Distribución de Marca Personal" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+      medir({ nombre: "VSLPlay" }, "vsl_play");
+    }, { once: true });
+  }
+
+  /* ---------- barra y botón pegado ---------- */
+  var barra = $("#barra"), pegado = $("#pegado"), cierre = $("#agendar");
+  function scrollea() {
+    barra.classList.toggle("s", scrollY > 30);
+    var r = cierre.getBoundingClientRect();
+    pegado.classList.toggle("on", scrollY > innerHeight * .9 && r.top > innerHeight * .6);
+  }
+  addEventListener("scroll", scrollea, { passive: true }); scrollea();
+
+  /* ---------- apariciones y números que cuentan ---------- */
+  function cuenta(el) {
+    var fin = +el.dataset.n, t0 = performance.now();
+    (function paso(t) { var p = Math.min(1, (t - t0) / 1300), e = 1 - Math.pow(1 - p, 3); el.textContent = Math.round(fin * e); if (p < 1) requestAnimationFrame(paso); })(t0);
+  }
+  if ("IntersectionObserver" in window && !quieto) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.classList.add("vis"); $$("[data-n]", e.target).forEach(cuenta); io.unobserve(e.target);
+    }); }, { rootMargin: "0px 0px -8% 0px" });
+    $$("[data-r]").forEach(function (el) { io.observe(el); });
+  } else $$("[data-r]").forEach(function (el) { el.classList.add("vis"); });
+
+  /* ---------- portal: pestañas que rotan solas hasta que alguien toca una ---------- */
+  var tabs = $$("#tabs button"), actual = 0, auto = true;
+  function ve(i) {
+    actual = i;
+    tabs.forEach(function (b, k) { b.classList.toggle("on", k === i); b.setAttribute("aria-selected", k === i); $("#" + b.dataset.p).hidden = k !== i; });
+  }
+  tabs.forEach(function (b, i) { b.addEventListener("click", function () { auto = false; ve(i); }); });
+  if (!quieto) setInterval(function () {
+    var r = $("#tabs").getBoundingClientRect();
+    if (auto && r.top < innerHeight && r.bottom > 0) ve((actual + 1) % tabs.length);
+  }, 3800);
+})();
+</script>
+</body>
+</html>
