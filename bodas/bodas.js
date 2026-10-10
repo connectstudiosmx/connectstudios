@@ -218,14 +218,15 @@
   // La base (tabla boda_destinos) es la que manda: estos números solo sirven si no responde
   let BASE = 25000, RESERVA = 0.2, OCUPADAS = new Set();
   let MX = {
-    "Jalisco": 0, "Aguascalientes": 3000, "Colima": 3000, "Guanajuato": 3000, "Michoacán": 3000, "Nayarit": 3000, "Zacatecas": 3000,
-    "Querétaro": 4000, "San Luis Potosí": 4000,
-    "Ciudad de México": 8000, "Estado de México": 8000, "Morelos": 8000, "Hidalgo": 8000, "Puebla": 8000, "Tlaxcala": 8000,
-    "Nuevo León": 9000, "Coahuila": 9000, "Durango": 9000, "Sinaloa": 9000, "Tamaulipas": 9000, "Guerrero": 9000, "Veracruz": 9000,
-    "Oaxaca": 10000, "Sonora": 10000, "Chihuahua": 10000, "Baja California": 11000, "Baja California Sur": 11000,
-    "Tabasco": 11000, "Chiapas": 11000, "Quintana Roo": 12000, "Yucatán": 12000, "Campeche": 12000
+    "Jalisco": 0, "Jalisco · Puerto Vallarta y costa": 5500,
+    "Aguascalientes": 5500, "Colima": 5500, "Guanajuato": 5500, "Michoacán": 5500, "Nayarit": 5500, "Zacatecas": 5500,
+    "Querétaro": 6500, "San Luis Potosí": 6500,
+    "Ciudad de México": 11000, "Estado de México": 11000, "Morelos": 11000, "Hidalgo": 11000, "Puebla": 11000, "Tlaxcala": 11000,
+    "Nuevo León": 12000, "Coahuila": 12000, "Durango": 12000, "Sinaloa": 12000, "Tamaulipas": 12000, "Guerrero": 12000, "Veracruz": 12000,
+    "Oaxaca": 13000, "Sonora": 13000, "Chihuahua": 13000, "Baja California": 14500, "Baja California Sur": 14500,
+    "Tabasco": 14500, "Chiapas": 14500, "Quintana Roo": 16000, "Yucatán": 16000, "Campeche": 16000
   };
-  let INTL = { "Belice": 20000, "Costa Rica": 22000, "España": 40000 };
+  let INTL = { "Belice": 24000, "Costa Rica": 29000, "España": 55000 };
 
   const id = s => document.getElementById(s);
   const fmt = n => "$" + Number(n).toLocaleString("es-MX");
