@@ -216,17 +216,16 @@
   const API = "https://ypguioklwhyixacfuksu.supabase.co";
   const LLAVE = "sb_publishable_qjTIY_M5HJ9R653m_uOmXw_bBbVTibS";
   // La base (tabla boda_destinos) es la que manda: estos números solo sirven si no responde
-  let BASE = 25000, RESERVA = 0.2, OCUPADAS = new Set();
+  let BASE = 30000, RESERVA = 0.2, OCUPADAS = new Set();
   let MX = {
-    "Jalisco": 0, "Jalisco · Puerto Vallarta y costa": 5500,
-    "Aguascalientes": 5500, "Colima": 5500, "Guanajuato": 5500, "Michoacán": 5500, "Nayarit": 5500, "Zacatecas": 5500,
-    "Querétaro": 6500, "San Luis Potosí": 6500,
-    "Ciudad de México": 11000, "Estado de México": 11000, "Morelos": 11000, "Hidalgo": 11000, "Puebla": 11000, "Tlaxcala": 11000,
-    "Nuevo León": 12000, "Coahuila": 12000, "Durango": 12000, "Sinaloa": 12000, "Tamaulipas": 12000, "Guerrero": 12000, "Veracruz": 12000,
-    "Oaxaca": 13000, "Sonora": 13000, "Chihuahua": 13000, "Baja California": 14500, "Baja California Sur": 14500,
-    "Tabasco": 14500, "Chiapas": 14500, "Quintana Roo": 16000, "Yucatán": 16000, "Campeche": 16000
+    "Jalisco": 0, "Aguascalientes": 1000, "Colima": 1000, "Guanajuato": 1000, "Michoacán": 1000, "Nayarit": 1000, "Zacatecas": 1000,
+    "Querétaro": 1500, "San Luis Potosí": 1500,
+    "Ciudad de México": 3000, "Estado de México": 3000, "Morelos": 3000, "Hidalgo": 3000, "Puebla": 3000, "Tlaxcala": 3000,
+    "Nuevo León": 3500, "Coahuila": 3500, "Durango": 3500, "Sinaloa": 3500, "Tamaulipas": 3500, "Guerrero": 3500, "Veracruz": 3500,
+    "Oaxaca": 4000, "Sonora": 4000, "Chihuahua": 4000, "Baja California": 5000, "Baja California Sur": 5000,
+    "Tabasco": 5000, "Chiapas": 5000, "Quintana Roo": 6000, "Yucatán": 6000, "Campeche": 6000
   };
-  let INTL = { "Belice": 24000, "Costa Rica": 29000, "España": 55000 };
+  let INTL = { "Belice": 19000, "Costa Rica": 24000, "España": 50000 };
 
   const id = s => document.getElementById(s);
   const fmt = n => "$" + Number(n).toLocaleString("es-MX");
